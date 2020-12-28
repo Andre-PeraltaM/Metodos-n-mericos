@@ -2,6 +2,8 @@ import biseccion
 import minimosCuadrados
 import brain
 import lagranje
+import lagrange2grafica
+import matplotlib.pyplot as plt
 
 
 from tkinter import *
@@ -185,11 +187,26 @@ def Grafico2(x):
         texto.delete(0, END)
 
     def confirmar(lx, ly):
+        
         if x == 4:
             obj = lagranje.lagran(lx, ly)
             ecuG, ecuM = obj.procedimiento()
             print(ecuG)
             print(ecuM)
+            
+            plot = lagrange2grafica.Lagrange(lx, ly)
+            selfx, selfy, xplt, yplt = plot.calculate()
+            
+            # #ploting
+            plt.plot(selfx, selfy, 'ro', xplt, yplt, 'b-')
+            plt.xlabel('X')
+            plt.ylabel('Y')
+            winTitle = plt.gcf()
+            winTitle.canvas.set_window_title("LAGRANGE")
+            plt.grid()
+            plt.show()
+
+            
 
     interGrafico.mainloop()
 

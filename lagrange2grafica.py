@@ -5,11 +5,18 @@ import matplotlib.pyplot as plt
 
 class Lagrange:
     def __init__(self, listx, listy):
-        self.x = listx
-        self.y = listy
-    
+        self.x = []
+        self.y = []
+        
+        for letrax, letray in zip(listx, listy):
+            if (letrax and letray) != (' ' and ','):
+              self.x.append( int(letrax) )
+              self.y.append( int(letray) )
+        
     def calculate(self):
-
+        
+        x = np.array(self.x)
+        y = np.array(self.y)
         #x = np.array([-4, -3, -2, -1], float)
         #y = np.array([0, -4, -6, -6], float)
 
@@ -26,16 +33,17 @@ class Lagrange:
                 yp += yi *  np.prod( (xp - self.x[self.x != xi]) / (xi - self.x[self.x != xi]) )
             
             yplt = np.append(yplt,yp)
+            
+        return self.x, self.y, xplt, yplt
+    
+        # #ploting
+        # plt.plot(self.x, self.y, 'ro', xplt, yplt, 'b-')
+        # plt.xlabel('X')
+        # plt.ylabel('Y')
+        # winTitle = plt.gcf()
+        # winTitle.canvas.set_window_title("LAGRANGE")
+        # plt.grid()
+        # plt.show()
 
-
-        #ploting
-        plt.plot(self.x, self.y, 'ro', xplt, yplt, 'b-')
-        plt.xlabel('X')
-        plt.ylabel('Y')
-        winTitle = plt.gcf()
-        winTitle.canvas.set_window_title("LAGRANGE")
-        plt.grid()
-        plt.show()
-
-myLagrange = Lagrange([1, 3, 5], [2, 5, 3])
-myLagrange.calculate()
+# myLagrange = Lagrange('1 3 5', '2 5 3')
+# myLagrange.calculate()
