@@ -99,7 +99,7 @@ class Biseccion:
 			resultadoError.append(self.error(resultadosFinales['Bolzano  '][i-1],resultadosFinales['Bolzano  '][i]))
 
 		resultadosFinales['  Error  '] = ['-','-','-'] + resultadoError
-		brain.grafica(f)
+		#brain.grafica(f)
 		return tablaTabulacion,resultadosFinales
 '''
 x = Biseccion('x^4+3x^3-2')#Ejemplo
