@@ -24,8 +24,15 @@ def Grafico4(x):
                    pady=50)
     textoCuatro = Entry(interGrafico, background="white", foreground="black", font=(
         "Open-Sans", 25))
-    textoCuatro.grid(row=1, column=10, columnspan=8, padx=10,
+    textoCuatro.grid(row=0, column=10, columnspan=8, padx=10,
                      pady=50)
+    
+    textoB = Entry(interGrafico, background="white", foreground="black", font=(
+        "Open-Sans", 25))
+    textoB.grid(row=1, column=10, columnspan=8, padx=10,
+                     pady=50)
+    
+    
     textoCinco = Entry(interGrafico, background="white", foreground="black", font=(
         "Open-Sans", 25))
     textoCinco.grid(row=2, column=10, columnspan=8, padx=10,
@@ -41,8 +48,13 @@ def Grafico4(x):
                    background="white", foreground="black", font=("Helvetica", 15), text="Despeje 2 =")
     aaTres.grid(row=2, column=0, columnspan=1, padx=5, pady=5)
     aaCuatro = Label(interGrafico, state="disabled", width=15, height=2,
-                     background="white", foreground="black", font=("Helvetica", 15), text="Valor inicial =")
-    aaCuatro.grid(row=1, column=9, columnspan=1, padx=5, pady=5)
+                     background="white", foreground="black", font=("Helvetica", 15), text="Límite a =")
+    aaCuatro.grid(row=0, column=9, columnspan=1, padx=5, pady=5)
+    
+    aaB = Label(interGrafico, state="disabled", width=15, height=2,
+                     background="white", foreground="black", font=("Helvetica", 15), text="Límite b =")
+    aaB.grid(row=1, column=9, columnspan=1, padx=5, pady=5)
+    
     aaCuatro = Label(interGrafico, state="disabled", width=15, height=2,
                      background="white", foreground="black", font=("Helvetica", 15), text="Nº Iteraciones =")
     aaCuatro.grid(row=2, column=9, columnspan=1, padx=5, pady=5)
@@ -74,7 +86,7 @@ def Grafico4(x):
     botonBorrar = Button(interGrafico, text="⌫", width=5,
                                             height=2, command=lambda: borrarElemento())
     botonEnter = Button(interGrafico, text="Enter", width=5,
-                        height=2, command=lambda: confirmar(texto.get(), textoDos.get(), textoTres.get(), int(textoCuatro.get()), int(textoCinco.get())))
+                        height=2, command=lambda: confirmar(texto.get(), textoDos.get(), textoTres.get(), int(textoCuatro.get()), int(textoB.get()), int(textoCinco.get())))
     botonResta = Button(interGrafico, text="-", width=5,
                         height=2, command=lambda: click_boton("-"))
     botonSuma = Button(interGrafico, text="+", width=5,
@@ -177,6 +189,9 @@ def Grafico4(x):
         textoCuatro.insert(0, x[:-1])
         textoCinco.delete(0, END)
         textoCinco.insert(0, x[:-1])
+        
+        textoB.delete(0, END)
+        textoB.insert(0, x[:-1])
 
     def click_boton(valor):
         i = len(texto.get())
@@ -188,6 +203,10 @@ def Grafico4(x):
             textoTres.insert(i, valor)
         elif textoCuatro.tk_focusNext():
             textoCuatro.insert(i, valor)
+            
+        elif textoB.tk_focusNext():
+            textoB.insert(i, valor)
+            
         elif textoCinco.tk_focusNext():
             textoCinco.insert(i, valor)
 
@@ -203,15 +222,16 @@ def Grafico4(x):
         textoDos.delete(0, END)
         textoTres.delete(0, END)
         textoCuatro.delete(0, END)
+        textoB.delete(0, END)
         textoCinco.delete(0, END)
 
-    def confirmar(ecu, despUno, despDos, initialValues, iterations):
+    def confirmar(ecu, despUno, despDos, initialValues, valB, iterations):
         if x == 1:
             obj = puntoFijo.PuntoFijo(
-                ecu, despUno, despDos, initialValues, iterations)
+                ecu, despUno, despDos, initialValues, valB, iterations)
             finalResultsOne, finalResultsTwo = obj.calculate()
             print(finalResultsOne)
             print(finalResultsTwo)
-            interGrafico.destroy()
+            #interGrafico.destroy()
 
     interGrafico.mainloop()

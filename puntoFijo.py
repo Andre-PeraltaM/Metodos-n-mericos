@@ -5,28 +5,29 @@ import pandas as pd
 
 
 class PuntoFijo:
-    def __init__(self, ecu, desp1, desp2, valInit, iterations):
+    def __init__(self, ecu, desp1, desp2, a, b, itr = 10):
         self.ecu = ecu
         self.ecu_desp = desp1
         self.ecu_desp_2 = desp2
-        self.valInit = valInit
-        self.iterations = iterations
+        self.a = a
+        self.b = b
+        self.itr = itr
 
     def calculate(self):
-        value = self.valInit
-        value_2 = self.valInit
-        itr = self.iterations
+        value = self.a
+        value_2 = self.b
+        itr = self.itr
 
         self.ecu = self.ecu.replace('^', "**")
         self.ecu_desp = self.ecu_desp.replace('^', "**")
         self.ecu_desp_2 = self.ecu_desp_2.replace('^', "**")
 
-        xplt = np.linspace(-10, 10, 200)
+        xplt = np.linspace(-10, 10, 200) 
         yplt = np.array([], float)
         yplt_desp = np.array([], float)
 
         ldict = {}
-        sToCode = "fun = lambda x: myExp "
+        sToCode  = "fun = lambda x: myExp "
         sToCode = sToCode.replace("myExp", self.ecu)
         exec(sToCode, globals(), ldict)
         fun = ldict['fun']
@@ -46,9 +47,9 @@ class PuntoFijo:
         d1 = []
         d2 = []
 
-        for xp in xplt:  # evalua
+        for xp in xplt: #evalua
             res = fun(xp)
-            yplt = np.append(yplt, res)
+            yplt = np.append(yplt , res)
 
         try:
             for i in range(itr):
@@ -58,18 +59,21 @@ class PuntoFijo:
         except:
             print("Este no es el despeje correcto")
 
+
         print("-------------------------")
 
         try:
             for i in range(itr):
-                value_2 = round(fun_desp_2(value_2))
+                value_2 = round( fun_desp_2(value_2) )
                 g2.append(f"g2(x{i + 1}) = ")
                 d2.append(f"{value_2}")
         except:
             print("Este no es el despeje correcto")
 
-        resultadosFinales = pd.DataFrame(d1, g1, ['Datos'])
-        resultadosFinales2 = pd.DataFrame(d2, g2, ['Datos'])
+
+        resultadosFinales = pd.DataFrame(d1,g1,['Datos'])             
+        resultadosFinales2 = pd.DataFrame(d2,g2,['Datos'])             
+
 
         plt.plot(xplt, yplt, 'b-')
         plt.plot(value, 0, 'ro')
@@ -79,16 +83,13 @@ class PuntoFijo:
         winTitle = plt.gcf()
         winTitle.canvas.set_window_title("Punto Fijo")
         plt.grid()
-        gridSize = [-(10), (10), -(10), (10)]  # Limite de ejes
+        gridSize = [-(10), (10), -(10), (10)] #Limite de ejes
         plt.axis(gridSize)
         plt.show()
 
-        return resultadosFinales, resultadosFinales2
-
-
+        return resultadosFinales,resultadosFinales2
 '''
-func = PuntoFijo(" x^2 - (2)*(x) - 3",
-                 " math.sqrt( (2)*(x) + 3 ) ", "3/(x - 2)  ", 1, 10)
+func = PuntoFijo(" x^2 - (2)*(x) - 3", " math.sqrt( (2)*(x) + 3 ) ", "3/(x - 2)  ")
 #func = PuntoFijo("  x^3 + (4*x^2) - x - 1", " -1 + (4*x^2) + (x^3) ", "6 - (x^3)   ")
 f1, f2 = func.calculate()
 
