@@ -158,6 +158,7 @@ def Grafico2(x):
             ecuG, ecuM = obj.procedimiento()
             print(ecuG)
             print(ecuM)
+            interGrafico.destroy()
             
             plot = lagrange2grafica.Lagrange(lx, ly)
             selfx, selfy, xplt, yplt = plot.calculate()

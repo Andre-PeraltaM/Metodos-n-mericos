@@ -73,8 +73,9 @@ class NewtonRapson:
         gridSize = [-(10), (10), -(10), (10)] #Limite de ejes
         plt.axis(gridSize)
         plt.show()
-
+'''
   #f = sy.log(x) - sy.cos(x) #función
 myFunc = NewtonRapson()
 myFunc.calculate("sy.log(x) - sy.cos(x)")
 #myFunc.calculate( "sy.Pow(x, 3) - 6*(sy.Pow(x, 2)) + 11*x - 6.1 ")
+'''

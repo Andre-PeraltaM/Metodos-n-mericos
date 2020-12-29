@@ -1,6 +1,8 @@
-
 import pandas as pd
-class trapecio_1:
+import simpson1_3
+
+class simpson_tresoctavos:
+
 	def __init__(self,funcion,a,b,num_iteraciones = 9):
 		self.funcion = funcion
 		self.a = a
@@ -24,30 +26,39 @@ class trapecio_1:
 			resultado.append(eval(self.funcion.replace('x',sustitucion)))
 
 		for i in range(len(resultado)):
-			if i == 0 or i == len(resultado)-1:
+			if  i == 0 or i == 3:
 				total += resultado[i]
+			elif i > 3:
+				break
 			else:
-				total += resultado[i]*2
-		total = (h/2)*total
-		n = list(range(self.num_iteraciones+1))
-		zzz = ['a+n*h = xi', f'f(x) = {self.funcion} ']
-		datos = []
+				total += resultado[i]*3
 
-		x = f'{self.funcion} = {self.b-self.a}/{self.num_iteraciones}/2*('
+
+
+		total = (h*3/8)*total
+
+		x = f'{self.funcion} = {self.b-self.a}/{self.num_iteraciones}/3*('
 
 		for i in range(self.num_iteraciones+1):
-			datos.append([aaa[i],resultado[i]])
 
 			if i == 0 :
 				x = x+f' {resultado[i]} +'
-			elif i == len(resultado)-1:
+			elif i == 3:
 				x = x+f' {resultado[i]} )'
+			elif i > 3 :
+				break
 			else:
-				x = x+f' {resultado[i]}*2 + '
+				x = x+f' {resultado[i]}*3 + '
+		n_tercio = simpson1_3.simpson_tercio(self.funcion,self.a,self.b,self.num_iteraciones)
+		y = n_tercio.operacion()
 
 
-		resultadosFinales = pd.DataFrame(datos,n,zzz) 
 
 
-		return resultadosFinales, x ,total
+		return y[0],x , total
+	
+'''
+xxxxx = simpson_tresoctavos('3*(x)**2 - 10*x + 8',2,3,11)
 
+print(xxxxx.operacion())
+'''

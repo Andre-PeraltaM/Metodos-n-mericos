@@ -197,7 +197,7 @@ def Grafico1(x):
             y = objeto.solucion()
             print(y[0])
             print(y[1])
-            ventana.withdraw()
+            ventana.destroy()
 
         elif x == 1:  # N-R
             objeto = '3'
