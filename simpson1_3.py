@@ -25,14 +25,13 @@ class simpson_tercio:
 		for i in range(len(resultado)):
 			if  i == 0 or i == len(resultado)-1:
 				total += resultado[i]
-			elif i < 4:
-				pass
+
 			else:
 				if i %2 == 0:
-					total += resultado[i]*4
+					total += resultado[i]*2
 					
 				else:
-					total += resultado[i]*2
+					total += resultado[i]*4
 
 
 		total = (h*1/3)*total
@@ -47,22 +46,22 @@ class simpson_tercio:
 
 			if i == 0 :
 				x = x+f' {resultado[i]} +'
-			elif i < 4 :
-				pass
+
 			elif i == len(resultado)-1:
 				x = x+f' {resultado[i]} )'
 			elif i %2 == 0:
-				x = x+f' {resultado[i]}*4 + ' 
+				x = x+f' {resultado[i]}*2 + ' 
 			else:
-				x = x+f' {resultado[i]}*2 + '
+				x = x+f' {resultado[i]}*4 + '
 
 
 		resultadosFinales = pd.DataFrame(datos,n,zzz) 
 
 
 		return resultadosFinales, x , total
-'''		
-xxxxx = simpson_tercio('3*(x)**2 - 10*x + 8',2,3,11)
+
+'''
+xxxxx = simpson_tercio('1/(1+x)',0,1,6)
 
 print(xxxxx.operacion())
 '''

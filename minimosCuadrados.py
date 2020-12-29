@@ -40,7 +40,7 @@ class miniCuadrados:
 		r = (N*Sxy-Sx*Sy)/(math.sqrt(N*Sx2-Sx*Sx)*math.sqrt(N*Sx2-Sy-Sy))
 		B2 = []
 		for i in range(len(filax)):
-			B2.append((b+m*filax[i]-filay[i])**2)
+			B2.append((b+(m*filax[i])-filay[i])**2)
 		
 		B2 = B2 + [sum(B2)]
 		filaxf = filax + [Sx]
@@ -67,7 +67,7 @@ class miniCuadrados:
 			for i in range(len(datos)):
 				datosReal[-1].append(datos[i][j])
 
-		columnas = ["X","Y",'x*y','x^2','y^2','(b+mx-y)^2', 'y en la grafica']
+		columnas = ["X","Y",'x*y','x^2','y^2','(b+mx-y)^2', '     Y en la grafica']
 		filas =  list(range(1,len(filaxf))) + [f'N = {len(filaxf)-1}']
 
 		tablaFinal = pd.DataFrame(datosReal,filas,columnas)
@@ -88,8 +88,8 @@ class miniCuadrados:
 		'''
 		return 	f'm = {m} b = {b} r = {r}' , tablaFinal , f'y = {m}*x+{b}'
 
-# x = miniCuadrados()
-# y = x.procedimiento('1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12','220, 230, 220, 240, 250, 250, 300, 300, 250, 300, 275, 200')
+x = miniCuadrados()
+y = x.procedimiento('1, 2, 3, 5, 6, 8, 9, 10','1.5, 2, 4, 4.6, 4.7, 8.5, 8.8, 9')
 
-# print(y[0])
-# print(y[1])
+print(y[0])
+print(y[1])
