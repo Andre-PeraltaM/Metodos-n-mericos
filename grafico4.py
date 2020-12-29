@@ -185,5 +185,6 @@ def Grafico4(x):
             finalResultsOne, finalResultsTwo = obj.calculate()
             print(finalResultsOne)
             print(finalResultsTwo)
+            interGrafico.destroy()
 
     interGrafico.mainloop()
