@@ -193,15 +193,22 @@ def Grafico1(x):
 
     def confirmar():
         if x == 0:  # biseccion
-            objeto = biseccion.Biseccion(str(texto.get()))
+            objeto = biseccion.Biseccion(texto.get())
             y = objeto.solucion()
             print(y[0])
             print(y[1])
             ventana.destroy()
 
-        elif x == 1:  # N-R
-            objeto = '3'
+ 
 
-        elif x == 2:  # McLaurin
-            objeto = '3'
+        elif x == 2:  # N-R
+
+            objeto = Newton_Raphson.NewtonRapson(texto.get())
+            y = objeto.calculate()
+            print(y[0])
+            print(y[1])
+            print(y[2])
+            ventana.destroy()
+        elif x == 3: #Mc
+            pass
     ventana.mainloop()
