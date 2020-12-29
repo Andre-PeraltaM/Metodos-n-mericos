@@ -170,13 +170,40 @@ def Grafico4(x):
         x = texto.get()
         texto.delete(0, END)
         texto.insert(0, x[:-1])
+        textoDos.delete(0, END)
+        textoTres.delete(0, END)
+        textoTres.insert(0, x[:-1])
+        textoCuatro.delete(0, END)
+        textoCuatro.insert(0, x[:-1])
+        textoCinco.delete(0, END)
+        textoCinco.insert(0, x[:-1])
 
     def click_boton(valor):
         i = len(texto.get())
-        texto.insert(i, valor)
+        if texto.tk_focusNext():
+            texto.insert(i, valor)
+        elif textoDos.tk_focusPrev():
+            textoDos.insert(i, valor)
+        elif textoTres.tk_focusNext():
+            textoTres.insert(i, valor)
+        elif textoCuatro.tk_focusNext():
+            textoCuatro.insert(i, valor)
+        elif textoCinco.tk_focusNext():
+            textoCinco.insert(i, valor)
+
+        '''
+        textoDos.insert(i, valor)
+        textoTres.insert(i, valor)
+        textoCuatro.insert(i, valor)
+        textoCinco.insert(i, valor)
+		'''
 
     def borrar():
         texto.delete(0, END)
+        textoDos.delete(0, END)
+        textoTres.delete(0, END)
+        textoCuatro.delete(0, END)
+        textoCinco.delete(0, END)
 
     def confirmar(ecu, despUno, despDos, initialValues, iterations):
         if x == 1:
