@@ -1,19 +1,20 @@
+
 from math import cos
 import numpy as np
 import matplotlib.pyplot as plt
 import math
 import sympy as sy
-
-
+import brain
+import pandas as pd
 class NewtonRapson:
-    def __init__(self):
-        None
+    def __init__(self, funcion):
+        self.funcion = funcion
 
-    def calculate(self, funcion):
+    def calculate(self):
 
         ldict = {}
         sToCode  = "x = sy.symbols('x')\nf = myExp "
-        sToCode = sToCode.replace("myExp", funcion)
+        sToCode = sToCode.replace("myExp", self.funcion)
         exec(sToCode, globals(), ldict)
         f = ldict['f']
 
@@ -25,12 +26,12 @@ class NewtonRapson:
 
         dx = sy.diff(f)
         dx = dx.doit()
-        print(f"f(x) = {f}")
-        print(f"f'(x) = {dx}")
-        print(f"Xi = {xi}")
+
+        v = [f"f(x) = {f}" , f"f'(x) = {dx}" ,f"Xi = {xi}"]
 
         f = str(f)
         dx = str(dx)
+
         f = f.replace("exp", "math.exp")
         f = f.replace("cos", "math.cos")
         f = f.replace("sin", "math.sin")
@@ -52,17 +53,24 @@ class NewtonRapson:
         exec(strCode, globals(), ldict)
         fun_der = ldict['fun_der']
 
+        filas = []
+        columnas = ['','']
+        xxx = []
 
         for xp in range(itr):
             xi = xi - ( fun(xi) / fun_der(xi) )
-            print(f"X({xp + 1}) -> {xi}")
-        print(f"Raíz -> {xi:.5f}")
+            filas.append(f"X({xp + 1})")  
+            xxx.append([ " ->", xi])
+
+        resultadosFinales = pd.DataFrame(xxx,filas,columnas)
             
         for xp in xplt:         
             res = fun(xp)
             yplt = np.append(yplt , res)
 
+        return v, resultadosFinales, f"Raíz -> {xi:.5f}"
 
+        '''
         plt.plot(xplt, yplt, 'b-')
         plt.plot(xi, 0, 'ro')
         plt.xlabel('X')
@@ -73,9 +81,11 @@ class NewtonRapson:
         gridSize = [-(10), (10), -(10), (10)] #Limite de ejes
         plt.axis(gridSize)
         plt.show()
-'''
-  #f = sy.log(x) - sy.cos(x) #función
-myFunc = NewtonRapson()
-myFunc.calculate("sy.log(x) - sy.cos(x)")
-#myFunc.calculate( "sy.Pow(x, 3) - 6*(sy.Pow(x, 2)) + 11*x - 6.1 ")
-'''
+        '''
+
+#f = sy.log(x) - sy.cos(x) #función
+myFunc = NewtonRapson("sy.log(x) - sy.cos(x)")
+x = myFunc.calculate()#myFunc.calculate( "sy.Pow(x, 3) - 6*(sy.Pow(x, 2)) + 11*x - 6.1 ")
+
+print(x)
+
