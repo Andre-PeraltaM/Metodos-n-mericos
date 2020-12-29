@@ -170,10 +170,15 @@ def Grafico2(x):
             winTitle.canvas.set_window_title("LAGRANGE")
             plt.grid()
             plt.show()
+            
+            
         elif x == 5:#Minimos
-            pass
+            obj = minimosCuadrados.miniCuadrados()
+            r1, r2, r3 = obj.procedimiento(lx, ly)
 
-
+            print(r1)
+            print(r2)
+            print(r3)
             
 
     interGrafico.mainloop()

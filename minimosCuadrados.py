@@ -5,11 +5,18 @@ import brain as br
 
 class miniCuadrados:
 	def __init__(self):
+        
 		None
 
 	def procedimiento(self,filax,filay):
+		filax = filax.replace(' ', '')
+		filay = filay.replace(' ', '')
+		filax = filax.replace(',', ' ')
+		filay = filay.replace(',', ' ')
+        
 		filax = filax.split(' ')
 		filay = filay.split(' ')
+
 		filax = list(map(float,filax))
 		filay = list(map(float,filay))
 		xy = []
@@ -80,11 +87,9 @@ class miniCuadrados:
 		show()
 
 		return 	f'm = {m} b = {b} r = {r}' , tablaFinal , f'y = {m}*x+{b}'
-'''
-x = miniCuadrados()
-y = x.procedimiento('1 2 3 4 5 6 7 8 9 10 11 12','220 230 220 240 250 250 300 300 250 300 275 200')
 
-print(y[0])
-print(y[1])
-print(y[2])
-'''
+# x = miniCuadrados()
+# y = x.procedimiento('1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12','220, 230, 220, 240, 250, 250, 300, 300, 250, 300, 275, 200')
+
+# print(y[0])
+# print(y[1])
