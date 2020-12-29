@@ -216,7 +216,7 @@ def Grafico3(x):
             print(y[0])
             print(y[1])
             print(y[2])
-            #ventana.destroy()
+            interGrafico.destroy()
 
         elif x == 7:  # simpson 1/3
             objeto = simpson1_3.simpson_tercio( fun, a, b, itr )
@@ -224,6 +224,7 @@ def Grafico3(x):
             print(y[0])
             print(y[1])
             print(y[2])
+            interGrafico.destroy()
 
         elif x == 8:  # simpson 3/8
             objeto = simpson3_8.simpson_tresoctavos( fun, a, b, itr )
@@ -231,6 +232,7 @@ def Grafico3(x):
             print(y[0])
             print(y[1])
             print(y[2])
+            interGrafico.destroy()
         
         elif x == 9:  #simpsonS
             objeto = simpson.Simp( fun, a, b, itr)
@@ -238,5 +240,6 @@ def Grafico3(x):
             print(y[0])
             print(y[1])
             print(y[2])
+            interGrafico.destroy()
             
-    ventana.mainloop()
+    interGrafico.mainloop()

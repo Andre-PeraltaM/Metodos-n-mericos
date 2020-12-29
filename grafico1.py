@@ -210,5 +210,9 @@ def Grafico1(x):
             print(y[2])
             ventana.destroy()
         elif x == 3: #Mc
-            pass
+            obj = mcLaurin.McTaylor(texto.get())
+            r1, r2 = obj.calculate()
+            print(r1)
+            print(r2)
+            ventana.destroy()
     ventana.mainloop()

@@ -82,10 +82,11 @@ class NewtonRapson:
         plt.axis(gridSize)
         plt.show()
         '''
-
+'''
 #f = sy.log(x) - sy.cos(x) #función
 myFunc = NewtonRapson("sy.log(x) - sy.cos(x)")
 x = myFunc.calculate()#myFunc.calculate( "sy.Pow(x, 3) - 6*(sy.Pow(x, 2)) + 11*x - 6.1 ")
 
 print(x)
 
+'''

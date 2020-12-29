@@ -159,7 +159,7 @@ def Grafico2(x):
             print(ecuG)
             print(ecuM)
             interGrafico.destroy()
-            
+            '''
             plot = lagrange2grafica.Lagrange(lx, ly)
             selfx, selfy, xplt, yplt = plot.calculate()
             
@@ -170,7 +170,8 @@ def Grafico2(x):
             winTitle.canvas.set_window_title("LAGRANGE")
             plt.grid()
             plt.show()
-            
+            interGrafico.destroy()
+            '''
             
         elif x == 5:#Minimos
             obj = minimosCuadrados.miniCuadrados()
@@ -179,6 +180,7 @@ def Grafico2(x):
             print(r1)
             print(r2)
             print(r3)
+            interGrafico.destroy()
             
 
     interGrafico.mainloop()
