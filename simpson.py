@@ -16,8 +16,8 @@ class simp:
 		y = tres_octavos.operacion()
 
 
-		return x[0],x[1],y[1],(x[2]+y[2])	
-'''		
+		return x,y[1:],(x[2]+y[2])	
+'''
 xxxxx = simp('3*(x)**2 - 10*x + 8',2,3,11)
 
 print(xxxxx.solucion())
