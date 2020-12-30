@@ -86,36 +86,34 @@ def grafica(function):
 	plt.show()
 	
 
-def __parentesis(function,caracter):
+def __parentesis(function,caracter = None):
 	#ESTE METODO DEBE SER PRIVADO
-	if caracter == '(':
-		sustitucion = '*('
-		contra = ')'
-		x = -1
-		y = 0
-	if caracter == ')':
-		sustitucion = ')*'
-		contra = '('
-		x = +1
-		y = 1
+	ecu = function
+	objeto = DoubleLinkedList()
+	objeto.introduce_funcion(ecu)
 
-	if caracter in function:
-		lugar_caracter = function.find(caracter)+1
-		numero_repeticiones = function.count(caracter)
-		s = 0
-		for i in range(numero_repeticiones):
-			cacho_cadena = function[s:lugar_caracter + y]
-			posicion = cacho_cadena.find(caracter)
+	tamaño = objeto.get_size()
+	for i in range(tamaño):
+		if objeto.pop(i) == '(':
 			try:
-				if cacho_cadena[posicion+ x].isdecimal() or cacho_cadena[posicion+ x] == contra:
-					cacho_cadena = cacho_cadena.replace(caracter,sustitucion)
-			except IndexError:
-				break
-			function = function.replace(function[s:lugar_caracter+y],cacho_cadena)
-			s = lugar_caracter+1
-			lugar_caracter = function[s:].find(caracter)+1+s
 
-	return function
+				if (objeto.pop(i-1).isdecimal() or objeto.pop(i-1) == ')') and i-1 != -1 :
+					objeto.insert('*(',i)
+					objeto.delete(i+1)
+
+				
+			except Exception as e:
+				pass
+		if objeto.pop(i) == ')':
+			try:
+				if objeto.pop(i+1).isdecimal() or objeto.pop(i+1) == '(':
+					objeto.insert(')*',i)
+					objeto.delete(i+1)
+			except Exception as e:
+				pass
+
+	return objeto.transversal()
+
 
 def ecuacion(function):
 	'''
@@ -125,7 +123,7 @@ def ecuacion(function):
 	'''
 	
 
-	tabla_de_valores = { 'X': '(x)', 'x': '(x)', '^': '**'}
+	tabla_de_valores = { 88: '(x)', 120: '(x)', 94: '**'}
 	function = function.translate(tabla_de_valores)
 	#Las anteriores 3 lineas son para sustituir X, x y ^
 	diccionario_otras_variables = {'sec':'(sic','csc':'(csc','cot':'(cot','sen':'(math.sin','cos':'(math.cos','tan':'(math.tan','senh':'(math.sinh','cosh':'(math.cosh','tanh':'(math.tanh','sin^-1': '(math.asin', 'cos^-1' : '(math.acos' , 'tan^-1' : '(math.atan','π':'(math.pi)','sqrt':'(math.sqrt','√':'(math.sqrt','Ln':'PROCESO','PROCESO':'(math.log10','PROCESO':'(math.log','PROCESO':'(math.acos','PROCESO':'(math.asin','PROCESO':'(math.atan','e':'(math.e)'}
@@ -135,7 +133,7 @@ def ecuacion(function):
 		if i in function:
 			for j in range(function.count(i)):
 				z = function[function.find(i)+len(i)+1:]
-				function = function[:function.find(i)+len(i)+1+z.find(')')] + '))' + function [function.find(i)+len(i)+1+z.find(')')+1:] 
+				function = function[:function.find(i)+len(i)+1+z.find(')')] + ')' + function [function.find(i)+len(i)+1+z.find(')')+1:] 
 				function = function.replace(i,diccionario_otras_variables[i],1)
 
 
@@ -149,7 +147,6 @@ def sustitucion(function, value = '1'):
 	Sustituye los valores de X en una ecuación por el valor dado
 	Si no se da un valor se evalua en 1 
 	'''
-	function = ecuacion(function)
 	function = function.replace('x',value)
 	try:
 		return eval(function)
@@ -201,3 +198,134 @@ def hay(un_objeto , en_este_argumento , y_este_aparece_solo = 1):
 
 
 
+def ecuacion2(function):
+	'''
+	Para cuando el programa use sympy
+	'''
+	tabla_de_valores = { 88: '(x)', 120: '(x)', 94: '**'}
+	function = function.translate(tabla_de_valores)
+	diccionario_otras_variables = {"ln":"sy.ln","log":"sy.log","cos":"sy.cos","sin":"sy.sin","tan":"sy.tan","cot":"sy.cot","sec":"sy.sec","csc":"sy.csc","sinc":"sy.sinc","acos":"sy.acos","asin":"sy.asin","atan":"sy.atan","acot":"sy.acot","asec":"sy.asec","acsc":"sy.acsc","acsc":"sy.acsc","π":"math.pi","e":"math.e"}
+	#math.log(x, base)
+	for i in diccionario_otras_variables:
+		if i in function:
+			for j in range(function.count(i)):
+				z = function[function.find(i)+len(i)+1:]
+				function = function[:function.find(i)+len(i)+1+z.find(')')] + ')' + function [function.find(i)+len(i)+1+z.find(')')+1:] 
+				function = function.replace(i,diccionario_otras_variables[i],1)
+	function = __parentesis(function,'(')#Hace que los parentesis multipliquen
+	function = __parentesis(function,')')
+	return function
+class NodoDoble:
+    def __init__( self , dato, anterior = None, siguiente = None):
+        self.dato = dato
+        self.siguiente = siguiente
+        self.anterior = anterior
+
+class DoubleLinkedList:
+	def __init__(self):
+		self.__head = None
+		self.__tail = None
+		self.__size = 0
+
+	def get_size(self):
+		return self.__size
+
+	def is_empty(self):
+		return self.__size == 0
+
+	def append(self,value):
+		if self.is_empty():
+			nuevo = NodoDoble(value)
+			self.__head = nuevo
+			self.__tail = nuevo
+		else:
+			nuevo = NodoDoble(value,self.__tail,None)
+			self.__tail.siguiente = nuevo #tail.next = nuevo
+			self.__tail = nuevo
+		self.__size += 1
+
+	def transversal(self): 
+		'''recorrido desde head'''
+		resultado = ''
+		curr_node = self.__head
+		if curr_node != None:
+			while curr_node != None :
+				resultado = resultado + curr_node.dato
+				curr_node = curr_node.siguiente
+		else:
+			print('Lista vacia')
+		return resultado
+
+	def pop(self,pos=-1):
+		'''obtener el valor en la posición específica'''
+		if self.__head != None:#Por si la lista está vacía
+			if 0 == pos:#Esto es por si el elemento es head
+				return self.__head.dato
+
+			cont = 0
+			curr_node = self.__head
+			while( curr_node.siguiente != None ):
+				if cont+1 == pos:
+					return curr_node.siguiente.dato
+
+				elif pos == -1 and curr_node.siguiente.siguiente == None:#En caso de que no ponga una posición se elimina el último valor
+					return curr_node.siguiente.dato
+				cont +=1
+				curr_node = curr_node.siguiente
+			return False
+		else:
+			print('Lista vacía')
+	def insert(self,value,pos=-1):
+		'''Introduce el valor en la posición específica'''
+		if self.__head != None:#Por si la lista está vacía
+			if 0 == pos:#Esto es por si el elemento es head
+				x = self.__head
+				self.__head = NodoDoble(value,None,x)
+				return None
+
+			cont = 0
+			curr_node = self.__head
+			while( curr_node.siguiente != None ):
+				if cont+1 == pos:
+					x = curr_node.siguiente
+					curr_node.siguiente = NodoDoble(value,curr_node,x)
+					return None
+
+				elif (pos == -1 or pos == self.__size) and curr_node.siguiente.siguiente == None:#En caso de que no ponga una posición se elimina el último valor
+					curr_node.siguiente.siguiente = NodoDoble(value,curr_node,None)
+					return None
+				cont +=1
+				curr_node = curr_node.siguiente
+			return False #Retorna False en caso de que esté fuera de rango
+		else:
+			print('Lista vacía')
+	def introduce_funcion(self,funcion):
+		for i in funcion:
+			self.append(i)
+	def delete(self,pos=-1):
+		'''obtener el valor en la posición específica'''
+		if self.__head != None:#Por si la lista está vacía
+			if 0 == pos:#Esto es por si el elemento es head
+				x = self.__head.dato
+				self.__head = self.__head.siguiente
+				return x
+
+			cont = 0
+			curr_node = self.__head
+			while( curr_node.siguiente != None ):
+				if cont+1 == pos:
+					x = curr_node.siguiente.dato
+					curr_node.siguiente = curr_node.siguiente.siguiente
+					return x
+
+				elif pos == -1 and curr_node.siguiente.siguiente == None:#En caso de que no ponga una posición se elimina el último valor
+					x = curr_node.siguiente.dato
+					curr_node.siguiente = curr_node.siguiente.siguiente
+					return x
+				cont +=1
+				curr_node = curr_node.siguiente
+			return False
+		else:
+			print('Lista vacía')
+
+print(ecuacion('e**(5x)'))

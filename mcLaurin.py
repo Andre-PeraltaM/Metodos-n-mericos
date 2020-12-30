@@ -6,33 +6,14 @@ printing.init_printing(use_latex=True)
 import matplotlib.pyplot as plt
 from fractions import Fraction
 import pandas as pd
-
+import brain
 
 class McTaylor:
     
     def __init__(self, fun):
-        fun = fun.replace("ln","sy.ln")
-        fun = fun.replace("log","sy.log")
-        fun = fun.replace("cos","sy.cos")
-        fun = fun.replace("sin","sy.sin")
-        fun = fun.replace("tan","sy.tan")
-        fun = fun.replace("cot","sy.cot")
-        fun = fun.replace("sec","sy.sec")
-        fun = fun.replace("csc","sy.csc")
-        fun = fun.replace("sinc","sy.sinc")
-        fun = fun.replace("acos","sy.acos")
-        fun = fun.replace("asin","sy.asin")
-        fun = fun.replace("atan","sy.atan")
-        fun = fun.replace("acot","sy.acot")
-        fun = fun.replace("asec","sy.asec")
-        fun = fun.replace("acsc","sy.acsc")
-        fun = fun.replace("acsc","sy.acsc")
-        fun = fun.replace("x","(x)")
-        fun = fun.replace("X","(x)")
-        fun = fun.replace("^","**")
-        
-        fun = fun.replace("π","math.pi")
-        fun = fun.replace("e","math.e")
+
+        fun = brain.ecuacion2(fun)
+
         
         self.f = fun
         
@@ -50,7 +31,7 @@ class McTaylor:
         f = ldict['f']
         
         
-        xi = 1 
+        xi = 0 
         itr = 7
         res = 0
         listx = np.array([])
@@ -87,11 +68,9 @@ class McTaylor:
         # print(xxx)
         
         return resultadosFinales, xxx
-'''
+
 #obj = McTaylor('log(x)')
-obj = McTaylor('ln(1+x)')
+obj = McTaylor('e**(5*x)')
 r1, r2 = obj.calculate()
 print(r1)
 print(r2)
-
-'''
