@@ -121,24 +121,25 @@ def ecuacion(function):
 	Resive un valor Str y devuelve un valor str equivalente que puede ser introducido en eval()
 	Si la función está mal entonces se devuelve 'error'
 	'''
+	function = raiz(function)
 	
 
 	tabla_de_valores = { 88: '(x)', 120: '(x)', 94: '**'}
 	function = function.translate(tabla_de_valores)
 	#Las anteriores 3 lineas son para sustituir X, x y ^
-	diccionario_otras_variables = {'sec':'(sic','csc':'(csc','cot':'(cot','sen':'(math.sin','cos':'(math.cos','tan':'(math.tan','senh':'(math.sinh','cosh':'(math.cosh','tanh':'(math.tanh','sin^-1': '(math.asin', 'cos^-1' : '(math.acos' , 'tan^-1' : '(math.atan','π':'(math.pi)','sqrt':'(math.sqrt','√':'(math.sqrt','Ln':'PROCESO','PROCESO':'(math.log10','PROCESO':'(math.log','PROCESO':'(math.acos','PROCESO':'(math.asin','PROCESO':'(math.atan','e':'(math.e)'}
+	diccionario_otras_variables = {'sec':'(sic','csc':'(csc','cot':'(cot','sen':'(math.sin','cos':'(math.cos','tan':'(math.tan','senh':'(math.sinh','cosh':'(math.cosh','tanh':'(math.tanh','sin^-1': '(math.asin', 'cos^-1' : '(math.acos' , 'tan^-1' : '(math.atan','π':'(math.pi)','Ln':'(math.log','ln':'(math.log','log':'(math.log10','acos':'(math.acos','asin':'(math.asin','atan':'(math.atan','e':'(math.e)'}
 
 	#math.log(x, base)
 	for i in diccionario_otras_variables:
 		if i in function:
 			for j in range(function.count(i)):
 				z = function[function.find(i)+len(i)+1:]
-				function = function[:function.find(i)+len(i)+1+z.find(')')] + ')' + function [function.find(i)+len(i)+1+z.find(')')+1:] 
+				function = function[:function.find(i)+len(i)+1+z.find(')')] + '))' + function [function.find(i)+len(i)+1+z.find(')')+1:] 
 				function = function.replace(i,diccionario_otras_variables[i],1)
 
 
-	function = __parentesis(function,'(')#Hace que los parentesis multipliquen
-	function = __parentesis(function,')')
+	function = __parentesis(function)#Hace que los parentesis multipliquen
+
 	
 	#Valor absoluto
 	return function
@@ -202,6 +203,7 @@ def ecuacion2(function):
 	'''
 	Para cuando el programa use sympy
 	'''
+	function = raiz(function)
 	tabla_de_valores = { 88: '(x)', 120: '(x)', 94: '**'}
 	function = function.translate(tabla_de_valores)
 	diccionario_otras_variables = {"ln":"sy.ln","log":"sy.log","cos":"sy.cos","sin":"sy.sin","tan":"sy.tan","cot":"sy.cot","sec":"sy.sec","csc":"sy.csc","sinc":"sy.sinc","acos":"sy.acos","asin":"sy.asin","atan":"sy.atan","acot":"sy.acot","asec":"sy.asec","acsc":"sy.acsc","acsc":"sy.acsc","π":"math.pi","e":"math.e"}
@@ -291,7 +293,7 @@ class DoubleLinkedList:
 					curr_node.siguiente = NodoDoble(value,curr_node,x)
 					return None
 
-				elif (pos == -1 or pos == self.__size) and curr_node.siguiente.siguiente == None:#En caso de que no ponga una posición se elimina el último valor
+				elif (pos == -1 or pos == self.__size ) and curr_node.siguiente.siguiente == None:#En caso de que no ponga una posición se elimina el último valor
 					curr_node.siguiente.siguiente = NodoDoble(value,curr_node,None)
 					return None
 				cont +=1
@@ -327,5 +329,71 @@ class DoubleLinkedList:
 			return False
 		else:
 			print('Lista vacía')
+def raiz(funcion):
+	ecu = funcion
+	objeto = DoubleLinkedList()
+	objeto.introduce_funcion(ecu)
+
+	tamaño = objeto.get_size()
+	for i in range(tamaño):
+		if objeto.pop(i) == '√':
+			try:
+
+				if objeto.pop(i-1).isdecimal() and i-1 != -1 and objeto.pop(i-2) != '/':
+					xx = numeros_atras(objeto,i-1)
+					numero = ''
+					for j in range(1,xx+1):
+						numero = numero + objeto.pop(i-j)
+
+					objeto.delete(i)
+					par = 0
+					objeto.insert('(',i)
+					for j in range((i+1),objeto.get_size()):
+						if objeto.pop(j) == '(':
+							par += 1
+
+						if objeto.pop(j) == ')':
+							par -=1
+
+						if par == 0:
+							objeto.insert(')',j+1)
+							objeto.insert((f'**(1/{numero})'),j+1)
+							for j in range(1,xx+1):
+								objeto.delete(i-j)
+
+
+							break
+				else: 
+					objeto.delete(i)
+					par = 0
+					objeto.insert('(',i)
+					for j in range((i+1),objeto.get_size()):
+						if objeto.pop(j) == '(':
+							par += 1
+
+						if objeto.pop(j) == ')':
+							par -=1
+
+						if par == 0:
+							objeto.insert(')',j+1)
+							objeto.insert((f'**(1/2)'),j+1)
+
+
+							break
+				
+			except Exception as e:
+				pass
+
+	return objeto.transversal()
+def numeros_atras(fun,pos):
+	lugar = pos
+	x = 0
+	for i in range(0,pos+1):
+		if fun.pop(pos-i).isdecimal():
+			x += 1
+		else:
+			break
+	return x
+
 
 
