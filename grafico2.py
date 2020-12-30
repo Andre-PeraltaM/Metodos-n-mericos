@@ -174,20 +174,6 @@ def Grafico2(x):
             # print(ecuG)
             # print(ecuM)
 
-            '''
-            plot = lagrange2grafica.Lagrange(lx, ly)
-            selfx, selfy, xplt, yplt = plot.calculate()
-            
-            plt.plot(selfx, selfy, 'ro', xplt, yplt, 'b-')
-            plt.xlabel('X')
-            plt.ylabel('Y')
-            winTitle = plt.gcf()
-            winTitle.canvas.set_window_title("LAGRANGE")
-            plt.grid()
-            plt.show()
-            interGrafico.destroy()
-            '''
-
         elif x == 5:  # Minimos
             for i in range(1):
                 try:
