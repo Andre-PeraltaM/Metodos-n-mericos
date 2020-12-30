@@ -7,7 +7,7 @@ import brain
 import pandas as pd
 class NewtonRapson:
     def __init__(self, funcion):
-        self.funcion = funcion
+        self.funcion = brain.ecuacion2(funcion)
 
     def calculate(self):
 
@@ -31,15 +31,9 @@ class NewtonRapson:
         f = str(f)
         dx = str(dx)
 
-        f = f.replace("exp", "math.exp")
-        f = f.replace("cos", "math.cos")
-        f = f.replace("sin", "math.sin")
-        f = f.replace("log", "math.log")
 
-        dx = dx.replace("exp", "math.exp")
-        dx = dx.replace("cos", "math.cos")
-        dx = dx.replace("sin", "math.sin")
-        dx = dx.replace("log", "math.log")
+        dx = brain.ecuacion2(dx)
+
 
 
         strCode = """fun = lambda x : myExp"""
