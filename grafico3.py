@@ -5,8 +5,10 @@ import minimosCuadrados
 import matplotlib.pyplot as plt
 import simpson1_3
 import simpson3_8
-import simpson 
+import simpson
 import trapecio
+import results
+
 
 def Grafico3(x):
 
@@ -29,7 +31,7 @@ def Grafico3(x):
         "Open-Sans", 25))
     textoTres.grid(row=0, column=10, columnspan=8, padx=10,
                    pady=50)
- 
+
     textoCinco = Entry(interGrafico, background="white", foreground="black", font=(
         "Open-Sans", 25))
     textoCinco.grid(row=1, column=10, columnspan=8, padx=10,
@@ -44,7 +46,7 @@ def Grafico3(x):
     aaTres = Label(interGrafico, state="disabled", width=12, height=2,
                    background="white", foreground="black", font=("Helvetica", 15), text="b")
     aaTres.grid(row=0, column=9, columnspan=1, padx=5, pady=5)
- 
+
     aaCuatro = Label(interGrafico, state="disabled", width=15, height=2,
                      background="white", foreground="black", font=("Helvetica", 15), text="Nº Iteraciones =")
     aaCuatro.grid(row=1, column=9, columnspan=1, padx=5, pady=5)
@@ -207,39 +209,57 @@ def Grafico3(x):
         ##textoCuatro.delete(0, END)
         textoCinco.delete(0, END)
 
-
-
     def confirmar(fun, a, b, itr):
         if x == 6:  # trapecio
-            objeto = trapecio.trapecio_1( fun, a, b, itr )
+            objeto = trapecio.trapecio_1(fun, a, b, itr)
             y = objeto.operacion()
-            print(y[0])
-            print(y[1])
-            print(y[2])
+
+            cad = str(y[0]) + "\n-----------------------\n" + \
+                str(y[1]) + "\n-----------------------\n" + str(y[2])
+            results.Results(cad)
+
+            # print(y[0])
+            # print(y[1])
+            # print(y[2])
             interGrafico.destroy()
 
         elif x == 7:  # simpson 1/3
-            objeto = simpson1_3.simpson_tercio( fun, a, b, itr )
+            objeto = simpson1_3.simpson_tercio(fun, a, b, itr)
             y = objeto.operacion()
-            print(y[0])
-            print(y[1])
-            print(y[2])
+
+            cad = str(y[0]) + "\n-----------------------\n" + \
+                str(y[1]) + "\n-----------------------\n" + str(y[2])
+            results.Results(cad)
+
+            # print(y[0])
+            # print(y[1])
+            # print(y[2])
             interGrafico.destroy()
 
         elif x == 8:  # simpson 3/8
-            objeto = simpson3_8.simpson_tresoctavos( fun, a, b, itr )
+            objeto = simpson3_8.simpson_tresoctavos(fun, a, b, itr)
             y = objeto.operacion()
-            print(y[0])
-            print(y[1])
-            print(y[2])
+
+            cad = str(y[0]) + "\n-----------------------\n" + \
+                str(y[1]) + "\n-----------------------\n" + str(y[2])
+            results.Results(cad)
+
+            # print(y[0])
+            # print(y[1])
+            # print(y[2])
             interGrafico.destroy()
-        
-        elif x == 9:  #simpsonS
-            objeto = simpson.Simp( fun, a, b, itr)
+
+        elif x == 9:  # simpsonS
+            objeto = simpson.Simp(fun, a, b, itr)
             y = objeto.solucion()
-            print(y[0])
-            print(y[1])
-            print(y[2])
+
+            cad = str(y[0]) + "\n-----------------------\n" + \
+                str(y[1]) + "\n-----------------------\n" + str(y[2])
+            results.Results(cad)
+
+            # print(y[0])
+            # print(y[1])
+            # print(y[2])
             interGrafico.destroy()
-            
+
     interGrafico.mainloop()

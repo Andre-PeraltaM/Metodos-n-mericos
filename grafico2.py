@@ -2,7 +2,9 @@ from tkinter import *
 import lagranje
 import lagrange2grafica
 import minimosCuadrados
+import results
 import matplotlib.pyplot as plt
+
 
 def Grafico2(x):
 
@@ -49,7 +51,7 @@ def Grafico2(x):
     botonBorrar = Button(interGrafico, text="⌫", width=5,
                          height=2, command=lambda: borrarElemento())
     botonEnter = Button(interGrafico, text="Enter", width=5,
-                        height=2, command=lambda: confirmar( texto.get(), texto2.get() ))
+                        height=2, command=lambda: confirmar(texto.get(), texto2.get()))
     botonResta = Button(interGrafico, text="-", width=5,
                         height=2, command=lambda: click_boton("-"))
     botonSuma = Button(interGrafico, text="+", width=5,
@@ -139,7 +141,7 @@ def Grafico2(x):
                        height=2, command=lambda: click_boton(","))
     botonComa.grid(row=6, column=1, padx=5, pady=5)
 
-    def borrarElemento():  
+    def borrarElemento():
         x = texto.get()
         texto.delete(0, END)
         texto.insert(0, x[:-1])
@@ -152,13 +154,17 @@ def Grafico2(x):
         texto.delete(0, END)
 
     def confirmar(lx, ly):
-        
+
         if x == 4:
             obj = lagranje.lagran(lx, ly)
             ecuG, ecuM = obj.procedimiento()
-            print(ecuG)
-            print(ecuM)
+
+            cad = str(ecuG) + "\n---------------------------\n" + str(ecuM)
+            results.Results(cad)
+            # print(ecuG)
+            # print(ecuM)
             interGrafico.destroy()
+
             '''
             plot = lagrange2grafica.Lagrange(lx, ly)
             selfx, selfy, xplt, yplt = plot.calculate()
@@ -172,15 +178,17 @@ def Grafico2(x):
             plt.show()
             interGrafico.destroy()
             '''
-            
-        elif x == 5:#Minimos
+
+        elif x == 5:  # Minimos
             obj = minimosCuadrados.miniCuadrados()
             r1, r2, r3 = obj.procedimiento(lx, ly)
+            cad = str(r1) + "\n---------------------------\n" + \
+                str(r2) + "\n---------------------------\n" + str(r3)
+            results.Results(cad)
 
-            print(r1)
-            print(r2)
-            print(r3)
+            # print(r1)
+            # print(r2)
+            # print(r3)
             interGrafico.destroy()
-            
 
     interGrafico.mainloop()

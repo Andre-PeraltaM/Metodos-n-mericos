@@ -3,7 +3,9 @@ import brain
 import biseccion
 import mcLaurin
 import Newton_Raphson
+import results
 import matplotlib.pyplot as plt
+
 
 def Grafico1(x):
     ventana = Tk()
@@ -195,24 +197,32 @@ def Grafico1(x):
         if x == 0:  # biseccion
             objeto = biseccion.Biseccion(texto.get())
             y = objeto.solucion()
-            print(y[0])
-            print(y[1])
-            ventana.destroy()
 
- 
+            cad = str(y[0]) + "\n---------------------\n" + str(y[1])
+            results.Results(cad)
+            # print(y[0])
+            # print(y[1])
+            ventana.destroy()
 
         elif x == 2:  # N-R
 
             objeto = Newton_Raphson.NewtonRapson(texto.get())
             y = objeto.calculate()
-            print(y[0])
-            print(y[1])
-            print(y[2])
+
+            cad = str(y[0]) + "\n---------------------\n" + \
+                str(y[1]) + "\n---------------------\n" + str(y[2])
+            results.Results(cad)
+            # print(y[0])
+            # print(y[1])
+            # print(y[2])
             ventana.destroy()
-        elif x == 3: #Mc
+        elif x == 3:  # Mc
             obj = mcLaurin.McTaylor(texto.get())
             r1, r2 = obj.calculate()
-            print(r1)
-            print(r2)
+
+            cad = str(r1) + "\n---------------------\n" + str(r2)
+            results.Results(cad)
+            # print(r1)
+            # print(r2)
             ventana.destroy()
     ventana.mainloop()

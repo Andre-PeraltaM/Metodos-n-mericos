@@ -1,4 +1,5 @@
 import puntoFijo
+import results
 from tkinter import *
 
 
@@ -10,32 +11,31 @@ def Grafico4(x):
     interGrafico.resizable(False, False)
 
     # Entradas de texto y labels ------------------------------------------------------
-    texto = Entry(interGrafico, background="white", foreground="black", font=(
+    func = Entry(interGrafico, background="white", foreground="black", font=(
         "Open-Sans", 25))
-    texto.grid(row=0, column=1, columnspan=8, padx=10,
-               pady=50)
-    textoDos = Entry(interGrafico, background="white", foreground="black", font=(
+    func.grid(row=0, column=1, columnspan=8, padx=10,
+              pady=50)
+    despUno = Entry(interGrafico, background="white", foreground="black", font=(
         "Open-Sans", 25))
-    textoDos.grid(row=1, column=1, columnspan=8, padx=10,
-                  pady=50)
-    textoTres = Entry(interGrafico, background="white", foreground="black", font=(
+    despUno.grid(row=1, column=1, columnspan=8, padx=10,
+                 pady=50)
+    despDos = Entry(interGrafico, background="white", foreground="black", font=(
         "Open-Sans", 25))
-    textoTres.grid(row=2, column=1, columnspan=8, padx=10,
-                   pady=50)
-    textoCuatro = Entry(interGrafico, background="white", foreground="black", font=(
+    despDos.grid(row=2, column=1, columnspan=8, padx=10,
+                 pady=50)
+    limiteA = Entry(interGrafico, background="white", foreground="black", font=(
         "Open-Sans", 25))
-    textoCuatro.grid(row=0, column=10, columnspan=8, padx=10,
-                     pady=50)
-    
-    textoB = Entry(interGrafico, background="white", foreground="black", font=(
+    limiteA.grid(row=0, column=10, columnspan=8, padx=10,
+                 pady=50)
+
+    limiteB = Entry(interGrafico, background="white", foreground="black", font=(
         "Open-Sans", 25))
-    textoB.grid(row=1, column=10, columnspan=8, padx=10,
-                     pady=50)
-    
-    
-    textoCinco = Entry(interGrafico, background="white", foreground="black", font=(
+    limiteB.grid(row=1, column=10, columnspan=8, padx=10,
+                 pady=50)
+
+    iterations = Entry(interGrafico, background="white", foreground="black", font=(
         "Open-Sans", 25))
-    textoCinco.grid(row=2, column=10, columnspan=8, padx=10,
+    iterations.grid(row=2, column=10, columnspan=8, padx=10,
                     pady=50)
 
     aa = Label(interGrafico, state="disabled", width=5, height=2,
@@ -50,11 +50,11 @@ def Grafico4(x):
     aaCuatro = Label(interGrafico, state="disabled", width=15, height=2,
                      background="white", foreground="black", font=("Helvetica", 15), text="Límite a =")
     aaCuatro.grid(row=0, column=9, columnspan=1, padx=5, pady=5)
-    
+
     aaB = Label(interGrafico, state="disabled", width=15, height=2,
-                     background="white", foreground="black", font=("Helvetica", 15), text="Límite b =")
+                background="white", foreground="black", font=("Helvetica", 15), text="Límite b =")
     aaB.grid(row=1, column=9, columnspan=1, padx=5, pady=5)
-    
+
     aaCuatro = Label(interGrafico, state="disabled", width=15, height=2,
                      background="white", foreground="black", font=("Helvetica", 15), text="Nº Iteraciones =")
     aaCuatro.grid(row=2, column=9, columnspan=1, padx=5, pady=5)
@@ -86,7 +86,7 @@ def Grafico4(x):
     botonBorrar = Button(interGrafico, text="⌫", width=5,
                                             height=2, command=lambda: borrarElemento())
     botonEnter = Button(interGrafico, text="Enter", width=5,
-                        height=2, command=lambda: confirmar(texto.get(), textoDos.get(), textoTres.get(), int(textoCuatro.get()), int(textoB.get()), int(textoCinco.get())))
+                        height=2, command=lambda: confirmar(func.get(), despUno.get(), despDos.get(), int(limiteA.get()), int(limiteB.get()), int(iterations.get())))
     botonResta = Button(interGrafico, text="-", width=5,
                         height=2, command=lambda: click_boton("-"))
     botonSuma = Button(interGrafico, text="+", width=5,
@@ -179,36 +179,39 @@ def Grafico4(x):
     botonComa.grid(row=7, column=1, padx=5, pady=5)
 
     def borrarElemento():
-        x = texto.get()
-        texto.delete(0, END)
-        texto.insert(0, x[:-1])
-        textoDos.delete(0, END)
-        textoTres.delete(0, END)
-        textoTres.insert(0, x[:-1])
-        textoCuatro.delete(0, END)
-        textoCuatro.insert(0, x[:-1])
-        textoCinco.delete(0, END)
-        textoCinco.insert(0, x[:-1])
-        
-        textoB.delete(0, END)
-        textoB.insert(0, x[:-1])
+        x = func.get()
+        func.delete(0, END)
+        func.insert(0, x[:-1])
+        despUno.delete(0, END)
+        despDos.delete(0, END)
+        despDos.insert(0, x[:-1])
+        limiteA.delete(0, END)
+        limiteA.insert(0, x[:-1])
+        iterations.delete(0, END)
+        iterations.insert(0, x[:-1])
+
+        limiteB.delete(0, END)
+        limiteB.insert(0, x[:-1])
 
     def click_boton(valor):
-        i = len(texto.get())
-        if texto.tk_focusNext():
-            texto.insert(i, valor)
-        elif textoDos.tk_focusPrev():
-            textoDos.insert(i, valor)
-        elif textoTres.tk_focusNext():
-            textoTres.insert(i, valor)
-        elif textoCuatro.tk_focusNext():
-            textoCuatro.insert(i, valor)
-            
-        elif textoB.tk_focusNext():
-            textoB.insert(i, valor)
-            
-        elif textoCinco.tk_focusNext():
-            textoCinco.insert(i, valor)
+        if func.tk_focusNext():
+            i = len(func.get())
+            func.insert(i, valor)
+        elif despUno.tk_focusNext():
+            i = len(despUno.get())
+            despUno.insert(i, valor)
+        elif despDos.tk_focusNext():
+            i = len(despDos.get())
+            despDos.insert(i, valor)
+        elif limiteA.tk_focusNext():
+            i = len(limiteA.get())
+            limiteA.insert(i, valor)
+        elif limiteB.tk_focusNext():
+            i = len(limiteB.get())
+            limiteB.insert(i, valor)
+        elif iterations.tk_focusNext():
+            i = len(iterations.get())
+            iterations.insert(i, valor)
 
         '''
         textoDos.insert(i, valor)
@@ -218,20 +221,21 @@ def Grafico4(x):
 		'''
 
     def borrar():
-        texto.delete(0, END)
-        textoDos.delete(0, END)
-        textoTres.delete(0, END)
-        textoCuatro.delete(0, END)
-        textoB.delete(0, END)
-        textoCinco.delete(0, END)
+        func.delete(0, END)
+        despUno.delete(0, END)
+        despDos.delete(0, END)
+        limiteA.delete(0, END)
+        limiteB.delete(0, END)
+        iterations.delete(0, END)
 
-    def confirmar(ecu, despUno, despDos, initialValues, valB, iterations):
+    def confirmar(ecu, despUno, despDos, valA, valB, iterations):
         if x == 1:
             obj = puntoFijo.PuntoFijo(
-                ecu, despUno, despDos, initialValues, valB, iterations)
+                ecu, despUno, despDos, valA, valB, iterations)
             finalResultsOne, finalResultsTwo = obj.calculate()
-            print(finalResultsOne)
-            print(finalResultsTwo)
+            cad = str(finalResultsOne) + \
+                "\n---------------------------------\n" + str(finalResultsTwo)
+            results.Results(cad)
             interGrafico.destroy()
 
     interGrafico.mainloop()
