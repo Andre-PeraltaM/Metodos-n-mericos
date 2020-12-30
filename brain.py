@@ -125,7 +125,7 @@ def ecuacion(function):
 	'''
 	
 
-	tabla_de_valores = { 88: '(x)', 120: '(x)', 94: '**'}
+	tabla_de_valores = { 'X': '(x)', 'x': '(x)', '^': '**'}
 	function = function.translate(tabla_de_valores)
 	#Las anteriores 3 lineas son para sustituir X, x y ^
 	diccionario_otras_variables = {'sec':'(sic','csc':'(csc','cot':'(cot','sen':'(math.sin','cos':'(math.cos','tan':'(math.tan','senh':'(math.sinh','cosh':'(math.cosh','tanh':'(math.tanh','sin^-1': '(math.asin', 'cos^-1' : '(math.acos' , 'tan^-1' : '(math.atan','π':'(math.pi)','sqrt':'(math.sqrt','√':'(math.sqrt','Ln':'PROCESO','PROCESO':'(math.log10','PROCESO':'(math.log','PROCESO':'(math.acos','PROCESO':'(math.asin','PROCESO':'(math.atan','e':'(math.e)'}

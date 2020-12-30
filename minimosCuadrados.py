@@ -87,9 +87,10 @@ class miniCuadrados:
 		show()
 		'''
 		return 	f'm = {m} b = {b} r = {r}' , tablaFinal , f'y = {m}*x+{b}'
-
+'''
 x = miniCuadrados()
 y = x.procedimiento('1, 2, 3, 5, 6, 8, 9, 10','1.5, 2, 4, 4.6, 4.7, 8.5, 8.8, 9')
 
 print(y[0])
 print(y[1])
+'''
