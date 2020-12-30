@@ -1,6 +1,7 @@
 import puntoFijo
 import results
 from tkinter import *
+from tkinter import messagebox
 
 
 def Grafico4(x):
@@ -237,12 +238,12 @@ def Grafico4(x):
                         ecu, despUno, despDos, valA, valB, iterations)
                     finalResultsOne, finalResultsTwo = obj.calculate()
                     cad = str(finalResultsOne) + \
-                        "\n---------------------------------\n" + str(finalResultsTwo)
+                        "\n---------------------------------\n" + \
+                        str(finalResultsTwo)
                     interGrafico.destroy()
                     results.Results(cad)
                 except Exception as e:
-                    messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
- 
-
+                    messagebox.showerror(
+                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
     interGrafico.mainloop()

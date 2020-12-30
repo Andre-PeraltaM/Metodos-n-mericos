@@ -3,6 +3,7 @@ import lagranje
 import lagrange2grafica
 import minimosCuadrados
 import matplotlib.pyplot as plt
+from tkinter import messagebox
 import simpson1_3
 import simpson3_8
 import simpson
@@ -223,7 +224,6 @@ def Grafico3(x):
             # print(y[1])
             # print(y[2])
 
-
         elif x == 7:  # simpson 1/3
             objeto = simpson1_3.simpson_tercio(fun, a, b, itr)
             y = objeto.operacion()
@@ -250,7 +250,6 @@ def Grafico3(x):
             # print(y[1])
             # print(y[2])
 
-
         elif x == 9:  # simpsonS
             for i in range(1):
                 try:
@@ -267,7 +266,7 @@ def Grafico3(x):
                     # print(y[1])
                     # print(y[2])
                 except Exception as e:
-                    messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
- 
+                    messagebox.showerror(
+                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
     interGrafico.mainloop()

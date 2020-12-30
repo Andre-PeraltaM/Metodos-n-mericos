@@ -4,6 +4,7 @@ import lagrange2grafica
 import minimosCuadrados
 import results
 import matplotlib.pyplot as plt
+from tkinter import messagebox
 
 
 def Grafico2(x):
@@ -162,16 +163,16 @@ def Grafico2(x):
                     obj = lagranje.lagran(lx, ly)
                     ecuG, ecuM = obj.procedimiento()
 
-                    cad = str(ecuG) + "\n---------------------------\n" + str(ecuM)
+                    cad = str(ecuG) + \
+                        "\n---------------------------\n" + str(ecuM)
                     interGrafico.destroy()
                     results.Results(cad)
                 except Exception as e:
-                    messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
- 
+                    messagebox.showerror(
+                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
             # print(ecuG)
             # print(ecuM)
-
 
             '''
             plot = lagrange2grafica.Lagrange(lx, ly)
@@ -197,14 +198,13 @@ def Grafico2(x):
                         str(r2) + "\n---------------------------\n" + str(r3)
                     interGrafico.destroy()
                     results.Results(cad)
-                    
+
                 except Exception as e:
-                    messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
- 
+                    messagebox.showerror(
+                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
             # print(r1)
             # print(r2)
             # print(r3)
-
 
     interGrafico.mainloop()

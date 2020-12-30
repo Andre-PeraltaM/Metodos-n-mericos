@@ -6,6 +6,8 @@ import Newton_Raphson
 import results
 import matplotlib.pyplot as plt
 from tkinter import messagebox
+
+
 def Grafico1(x):
     ventana = Tk()
     ventana.config(background="#213141")
@@ -204,11 +206,10 @@ def Grafico1(x):
                     results.Results(cad)
                     # print(y[0])
                     # print(y[1])
-                    break                
+                    break
                 except Exception as e:
-                    messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
- 
-                
+                    messagebox.showerror(
+                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
         elif x == 2:  # N-R
             for i in range(1):
@@ -225,8 +226,9 @@ def Grafico1(x):
                     # print(y[2])
 
                 except Exception as e:
-                    messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
- 
+                    messagebox.showerror(
+                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+
         elif x == 3:  # Mc
             for i in range(1):
                 try:
@@ -239,7 +241,7 @@ def Grafico1(x):
                     # print(r1)
                     # print(r2)
                 except Exception as e:
-                    messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
- 
+                    messagebox.showerror(
+                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
     ventana.mainloop()
