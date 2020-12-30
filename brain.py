@@ -328,4 +328,4 @@ class DoubleLinkedList:
 		else:
 			print('Lista vacía')
 
-print(ecuacion('e**(5x)'))
+

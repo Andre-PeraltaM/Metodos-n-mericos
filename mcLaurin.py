@@ -68,9 +68,10 @@ class McTaylor:
         # print(xxx)
         
         return resultadosFinales, xxx
-
+'''
 #obj = McTaylor('log(x)')
 obj = McTaylor('e**(5*x)')
 r1, r2 = obj.calculate()
 print(r1)
 print(r2)
+'''
