@@ -230,12 +230,19 @@ def Grafico4(x):
 
     def confirmar(ecu, despUno, despDos, valA, valB, iterations):
         if x == 1:
-            obj = puntoFijo.PuntoFijo(
-                ecu, despUno, despDos, valA, valB, iterations)
-            finalResultsOne, finalResultsTwo = obj.calculate()
-            cad = str(finalResultsOne) + \
-                "\n---------------------------------\n" + str(finalResultsTwo)
-            results.Results(cad)
-            interGrafico.destroy()
+            for i in range(1):
+                try:
+
+                    obj = puntoFijo.PuntoFijo(
+                        ecu, despUno, despDos, valA, valB, iterations)
+                    finalResultsOne, finalResultsTwo = obj.calculate()
+                    cad = str(finalResultsOne) + \
+                        "\n---------------------------------\n" + str(finalResultsTwo)
+                    interGrafico.destroy()
+                    results.Results(cad)
+                except Exception as e:
+                    messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+ 
+
 
     interGrafico.mainloop()

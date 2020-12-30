@@ -216,12 +216,13 @@ def Grafico3(x):
 
             cad = str(y[0]) + "\n-----------------------\n" + \
                 str(y[1]) + "\n-----------------------\n" + str(y[2])
+            interGrafico.destroy()
             results.Results(cad)
 
             # print(y[0])
             # print(y[1])
             # print(y[2])
-            interGrafico.destroy()
+
 
         elif x == 7:  # simpson 1/3
             objeto = simpson1_3.simpson_tercio(fun, a, b, itr)
@@ -229,12 +230,12 @@ def Grafico3(x):
 
             cad = str(y[0]) + "\n-----------------------\n" + \
                 str(y[1]) + "\n-----------------------\n" + str(y[2])
+            interGrafico.destroy()
             results.Results(cad)
 
             # print(y[0])
             # print(y[1])
             # print(y[2])
-            interGrafico.destroy()
 
         elif x == 8:  # simpson 3/8
             objeto = simpson3_8.simpson_tresoctavos(fun, a, b, itr)
@@ -242,24 +243,31 @@ def Grafico3(x):
 
             cad = str(y[0]) + "\n-----------------------\n" + \
                 str(y[1]) + "\n-----------------------\n" + str(y[2])
+            interGrafico.destroy()
             results.Results(cad)
 
             # print(y[0])
             # print(y[1])
             # print(y[2])
-            interGrafico.destroy()
+
 
         elif x == 9:  # simpsonS
-            objeto = simpson.Simp(fun, a, b, itr)
-            y = objeto.solucion()
+            for i in range(1):
+                try:
 
-            cad = str(y[0]) + "\n-----------------------\n" + \
-                str(y[1]) + "\n-----------------------\n" + str(y[2])
-            results.Results(cad)
+                    objeto = simpson.Simp(fun, a, b, itr)
+                    y = objeto.solucion()
 
-            # print(y[0])
-            # print(y[1])
-            # print(y[2])
-            interGrafico.destroy()
+                    cad = str(y[0]) + "\n-----------------------\n" + \
+                        str(y[1]) + "\n-----------------------\n" + str(y[2])
+                    interGrafico.destroy()
+                    results.Results(cad)
+
+                    # print(y[0])
+                    # print(y[1])
+                    # print(y[2])
+                except Exception as e:
+                    messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+ 
 
     interGrafico.mainloop()

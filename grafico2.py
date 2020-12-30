@@ -156,14 +156,22 @@ def Grafico2(x):
     def confirmar(lx, ly):
 
         if x == 4:
-            obj = lagranje.lagran(lx, ly)
-            ecuG, ecuM = obj.procedimiento()
+            for i in range(1):
+                try:
 
-            cad = str(ecuG) + "\n---------------------------\n" + str(ecuM)
-            results.Results(cad)
+                    obj = lagranje.lagran(lx, ly)
+                    ecuG, ecuM = obj.procedimiento()
+
+                    cad = str(ecuG) + "\n---------------------------\n" + str(ecuM)
+                    interGrafico.destroy()
+                    results.Results(cad)
+                except Exception as e:
+                    messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+ 
+
             # print(ecuG)
             # print(ecuM)
-            interGrafico.destroy()
+
 
             '''
             plot = lagrange2grafica.Lagrange(lx, ly)
@@ -180,15 +188,23 @@ def Grafico2(x):
             '''
 
         elif x == 5:  # Minimos
-            obj = minimosCuadrados.miniCuadrados()
-            r1, r2, r3 = obj.procedimiento(lx, ly)
-            cad = str(r1) + "\n---------------------------\n" + \
-                str(r2) + "\n---------------------------\n" + str(r3)
-            results.Results(cad)
+            for i in range(1):
+                try:
+
+                    obj = minimosCuadrados.miniCuadrados()
+                    r1, r2, r3 = obj.procedimiento(lx, ly)
+                    cad = str(r1) + "\n---------------------------\n" + \
+                        str(r2) + "\n---------------------------\n" + str(r3)
+                    interGrafico.destroy()
+                    results.Results(cad)
+                    
+                except Exception as e:
+                    messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+ 
 
             # print(r1)
             # print(r2)
             # print(r3)
-            interGrafico.destroy()
+
 
     interGrafico.mainloop()
