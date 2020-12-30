@@ -1,10 +1,10 @@
 import pandas as pd
 import simpson1_3
-
+import brain
 class simpson_tresoctavos:
 
 	def __init__(self,funcion,a,b,num_iteraciones = 9):
-		self.funcion = funcion
+		self.funcion = brain.ecuacion(funcion)
 		self.a = a
 		self.b = b
 		self.num_iteraciones = num_iteraciones

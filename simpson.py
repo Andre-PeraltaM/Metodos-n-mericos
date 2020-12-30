@@ -1,8 +1,9 @@
 import pandas as pd
 import simpson3_8
+import brain
 class simpson_tercio:
 	def __init__(self,funcion,a,b,num_iteraciones = 9):
-		self.funcion = funcion
+		self.funcion = brain.ecuacion(funcion)
 		self.a = a
 		self.b = b
 		self.num_iteraciones = num_iteraciones
@@ -11,6 +12,8 @@ class simpson_tercio:
 		return (self.b - self.a)/self.num_iteraciones
 
 	def operacion(self):
+		print(brain.ecuacion(self.funcion))
+		print(self.funcion)
 		resultado = []
 		total = 0
 
@@ -20,8 +23,9 @@ class simpson_tercio:
 		for i in range(self.num_iteraciones+1):
 			sustitucion = f'{self.a + i*h}'
 			aaa.append(sustitucion)
+			www = self.funcion.replace('x',sustitucion)
 
-			resultado.append(eval(self.funcion.replace('x',sustitucion)))
+			resultado.append(eval(www))
 
 		for i in range(len(resultado)):
 			if  i == 0 or i == len(resultado)-1:
@@ -64,7 +68,7 @@ class simpson_tercio:
 		return resultadosFinales, x , total
 class Simp:
 	def __init__(self,funcion,a,b,num_iteraciones = 9):
-		self.funcion = funcion
+		self.funcion = brain.ecuacion(funcion)
 		self.a = a
 		self.b = b
 		self.num_iteraciones = num_iteraciones

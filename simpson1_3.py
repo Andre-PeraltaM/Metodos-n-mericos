@@ -1,7 +1,8 @@
 import pandas as pd
+import brain
 class simpson_tercio:
 	def __init__(self,funcion,a,b,num_iteraciones = 9):
-		self.funcion = funcion
+		self.funcion = brain.ecuacion(funcion)
 		self.a = a
 		self.b = b
 		self.num_iteraciones = num_iteraciones
@@ -59,9 +60,9 @@ class simpson_tercio:
 
 
 		return resultadosFinales, x , total
-
 '''
-xxxxx = simpson_tercio('1/(1+x)',0,1,6)
+
+xxxxx = simpson_tercio('1/(1+X)',0,1,6)
 
 print(xxxxx.operacion())
 '''

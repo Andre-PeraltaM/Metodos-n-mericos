@@ -1,8 +1,8 @@
-
+import brain
 import pandas as pd
 class trapecio_1:
 	def __init__(self,funcion,a,b,num_iteraciones = 9):
-		self.funcion = funcion
+		self.funcion = brain.ecuacion(funcion)
 		self.a = a
 		self.b = b
 		self.num_iteraciones = num_iteraciones
