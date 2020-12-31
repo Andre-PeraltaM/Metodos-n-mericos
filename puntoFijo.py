@@ -13,6 +13,12 @@ class PuntoFijo:
         self.b = b
         self.itr = itr
 
+        xplt = None
+        yplt = None
+        yplt_desp = None
+        value = None
+        value_2 = None
+
     def calculate(self):
         value = self.a
         value_2 = self.b
@@ -94,22 +100,26 @@ class PuntoFijo:
 
 
         resultadosFinales = pd.DataFrame(d1,g1,['Datos'])             
-        resultadosFinales2 = pd.DataFrame(d2,g2,['Datos'])             
+        resultadosFinales2 = pd.DataFrame(d2,g2,['Datos'])
+        return resultadosFinales,resultadosFinales2             
 
+    def graf(self):
+        try:            
 
-        plt.plot(xplt, yplt, 'b-')
-        plt.plot(value, 0, 'ro')
-        plt.plot(value_2, 0, 'ro')
-        plt.xlabel('X')
-        plt.ylabel('Y')
-        winTitle = plt.gcf()
-        winTitle.canvas.set_window_title("Punto Fijo")
-        plt.grid()
-        gridSize = [-(10), (10), -(10), (10)] #Limite de ejes
-        plt.axis(gridSize)
-        plt.show()
-
-        return resultadosFinales,resultadosFinales2
+            plt.plot(xplt, yplt, 'b-')
+            plt.plot(value, 0, 'ro')
+            plt.plot(value_2, 0, 'ro')
+            plt.xlabel('X')
+            plt.ylabel('Y')
+            winTitle = plt.gcf()
+            winTitle.canvas.set_window_title("Punto Fijo")
+            plt.grid()
+            gridSize = [-(10), (10), -(10), (10)] #Limite de ejes
+            plt.axis(gridSize)
+            plt.show()
+        except Exception as e:
+            pass
+        
 
 #func = PuntoFijo(" x^2 - (2)*(x) - 3", " math.sqrt( (2)*(x) + 3 ) ", "3/(x - 2)  ")
 #func = PuntoFijo("  x^3 + (4*x^2) - x - 1", " -1 + (4*x^2) + (x^3) ", "6 - (x^3)   ")

@@ -204,12 +204,12 @@ def Grafico1(x):
                     texto_1 = texto.get()
 
                     objeto = biseccion.Biseccion(texto_1)
+                    y = objeto.solucion()
                     ventana.destroy()
 
                     obj = BiseccionGrafica.Biseccion()
                     obj.calculate(brain.ecuacion(texto_1))
 
-                    y = objeto.solucion()
 
                     cad = str(y[0]) + "\n---------------------\n" + str(y[1])
                     results.Results(cad)

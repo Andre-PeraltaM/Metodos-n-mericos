@@ -7,8 +7,11 @@ import minimosCuadradoGrafica
 class miniCuadrados:
 	def __init__(self):
         
-		None
-
+		self.filax = None
+		self.filay = None
+	def graf(self):
+		objGraf = minimosCuadradoGrafica.MinCuadradosGrafica()
+		objGraf.process( self.filax, self.filay )
 	def procedimiento(self,filax,filay):
 		filax = filax.replace(' ', '')
 		filay = filay.replace(' ', '')
@@ -18,8 +21,8 @@ class miniCuadrados:
 		filax = filax.split(' ')
 		filay = filay.split(' ')
         
-		objGraf = minimosCuadradoGrafica.MinCuadradosGrafica()
-		objGraf.process( filax, filay )
+		self.filax = filax
+		self.filay = filay
         
 
 		filax = list(map(float,filax))

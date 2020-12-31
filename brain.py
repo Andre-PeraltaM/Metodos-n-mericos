@@ -121,6 +121,12 @@ def ecuacion(function):
 	Resive un valor Str y devuelve un valor str equivalente que puede ser introducido en eval()
 	Si la función está mal entonces se devuelve 'error'
 	'''
+	for i in function:
+		if i.isdecimal():
+			break
+	else:
+		raise e
+
 	function = raiz(function)
 	
 

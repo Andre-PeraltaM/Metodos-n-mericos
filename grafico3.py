@@ -201,25 +201,29 @@ def Grafico3(x):
         textoCinco.delete(0, END)
 
     def confirmar(fun, a, b, itr):
-        a = int(a)
-        b = int(b)
-        itr = int(itr)
+
         if x == 6:  # trapecio
-            for i in range(1):
+            try:
 
-                objeto = trapecio.trapecio_1(fun, a, b, itr)
-                y = objeto.operacion()
-                interGrafico.destroy()
-                objeto.graf()
+                for i in range(1):
 
-                cad = str(y[0]) + "\n-----------------------\n" + \
-                    str(y[1]) + "\n-----------------------\n" + "Area = " + str(y[2]) + " u^2"
-                results.Results(cad)
+                    objeto = trapecio.trapecio_1(fun, int(a), int(b), int(itr))
+                    y = objeto.operacion()
+                    interGrafico.destroy()
+                    objeto.graf()
 
-                # print(y[0])
-                # print(y[1])
-                # print(y[2])
+                    cad = str(y[0]) + "\n-----------------------\n" + \
+                        str(y[1]) + "\n-----------------------\n" + "Area = " + str(y[2]) + " u^2"
+                    results.Results(cad)
 
+                    # print(y[0])
+                    # print(y[1])
+                    # print(y[2])
+                
+            except Exception as e:
+                    messagebox.showerror(
+                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+            
         elif x == 7:  # simpson 1/3
             for i in range(1):
                 try:

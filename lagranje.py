@@ -9,22 +9,23 @@ class lagran:
         fila2 = fila2.replace(' ', '')
         self.fila1 = fila1.replace(',', ' ')
         self.fila2 = fila2.replace(',', ' ')
+        self.x = list(map(str, self.fila1.split(' ')))
+        self.y = list(map(str, self.fila2.split(' ')))
 
     def procedimiento(self):
         '''Regresa dos cosas, la ecuacion antes de ser simplificada y la ecuación ya simplificada'''
         X = sy.symbols('X')
-        x = list(map(str, self.fila1.split(' ')))
-        y = list(map(str, self.fila2.split(' ')))
+
         P = [[['[]'for i in range(
-            len(x)-1)], '/', ['[]' for i in range(len(x)-1)]] for i in range(len(x))]
+            len(self.x)-1)], '/', ['[]' for i in range(len(self.x)-1)]] for i in range(len(self.x))]
         cont = 0
         for i in P:
-            elemento = x.pop(cont)
-            for j in range(len(x)):
+            elemento = self.x.pop(cont)
+            for j in range(len(self.x)):
 
-                i[0][j] = f'({X}-{x[j]})'
-                i[2][j] = f'({elemento}-{x[j]})'
-            x.insert(cont, elemento)
+                i[0][j] = f'({X}-{self.x[j]})'
+                i[2][j] = f'({elemento}-{self.x[j]})'
+            self.x.insert(cont, elemento)
 
             cont += 1
         for i in range(len(P)):
@@ -32,12 +33,14 @@ class lagran:
                 P[i][j] = '*'.join(P[i][j])
                 P[i][j] = f'({P[i][j]})'
 
-            P[i].insert(0, f'{y[i]}*')
+            P[i].insert(0, f'{self.y[i]}*')
             P[i] = ''.join(P[i])
         P = '+'.join(P)
         ecuacion = sy.simplify(P)
 
-        plot = lagrange2grafica.Lagrange(x, y)
+        return P, ecuacion
+    def graf(self): 
+        plot = lagrange2grafica.Lagrange(self.x, self.y)
         selfx, selfy, xplt, yplt = plot.calculate()
 
         plt.plot(selfx, selfy, 'ro', xplt, yplt, 'b-')
@@ -48,7 +51,7 @@ class lagran:
         plt.grid()
         plt.show()
 
-        return P, ecuacion
+        
 
 
 # x =lagran('1, 3, 5','2, 5, 3')#Ejemplo

@@ -157,30 +157,33 @@ def Grafico2(x):
     def confirmar(lx, ly):
 
         if x == 4:
-            for i in range(1):
-                try:
+            try:
+
+                for i in range(1):
+
 
                     obj = lagranje.lagran(lx, ly)
-                    interGrafico.destroy()                
                     ecuG, ecuM = obj.procedimiento()
+                    interGrafico.destroy()
+                    obj.graf()                
 
                     cad = str(ecuG) + \
                         "\n---------------------------\n" + str(ecuM)
                     results.Results(cad)
-                except Exception as e:
-                    messagebox.showerror(
-                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+                
+            except Exception as e:
+                messagebox.showerror(message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
-            # print(ecuG)
-            # print(ecuM)
 
         elif x == 5:  # Minimos
             for i in range(1):
                 try:
                     
                     obj = minimosCuadrados.miniCuadrados()
-                    interGrafico.destroy()
                     r1, r2, r3 = obj.procedimiento(lx, ly)
+                    interGrafico.destroy()
+                    obj.graf()
+
                     cad = str(r1) + "\n---------------------------\n" + \
                         str(r2) + "\n---------------------------\n" + str(r3)
                     results.Results(cad)

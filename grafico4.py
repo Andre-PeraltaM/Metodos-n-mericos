@@ -4,6 +4,7 @@ from tkinter import *
 from tkinter import messagebox
 import brain
 
+
 def Grafico4(x):
     interGrafico = Tk()
     interGrafico.geometry("1100x700")
@@ -87,7 +88,7 @@ def Grafico4(x):
     botonBorrar = Button(interGrafico, text="⌫", width=5,
                                             height=2, command=lambda: borrarElemento())
     botonEnter = Button(interGrafico, text="Enter", width=5,
-                        height=2, command=lambda: confirmar(func.get(), despUno.get(), despDos.get(), int(limiteA.get()), int(limiteB.get()), int(iterations.get())))
+                        height=2, command=lambda: confirmar(func.get(), despUno.get(), despDos.get(), limiteA.get(), limiteB.get(), iterations.get()))
     botonResta = Button(interGrafico, text="-", width=5,
                         height=2, command=lambda: click_boton("-"))
     botonSuma = Button(interGrafico, text="+", width=5,
@@ -237,9 +238,10 @@ def Grafico4(x):
                     despUnor = brain.ecuacion(despUno)
                     despDosr = brain.ecuacion(despDos)
 
-                    obj = puntoFijo.PuntoFijo(ecur, despUnor, despDosr, valA, valB, iterations)
-                    interGrafico.destroy()                   
+                    obj = puntoFijo.PuntoFijo(ecur, despUnor, despDosr, int(valA), int(valB), int(iterations))
                     finalResultsOne, finalResultsTwo = obj.calculate()
+                    interGrafico.destroy()
+                    obj.graf()                   
                     cad = str(finalResultsOne) + \
                         "\n---------------------------------\n" + \
                         str(finalResultsTwo)
