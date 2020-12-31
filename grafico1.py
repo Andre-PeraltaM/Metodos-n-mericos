@@ -63,7 +63,7 @@ def Grafico1(x):
     botonParentesisCierre = Button(
         ventana, text=")", width=5, height=2, command=lambda: click_boton(")"))
     botonRaiz = Button(ventana, text="√", width=5, height=2,
-                       command=lambda: click_boton("√"))
+                       command=lambda: click_boton("√()"))
     botonPunto = Button(ventana, text=".", width=5, height=2,
                         command=lambda: click_boton("."))
     botonX = Button(ventana, text="x", width=5, height=2,
@@ -90,9 +90,9 @@ def Grafico1(x):
     botonXelavado = Button(ventana, text="X^y", width=5,
                            height=2, command=lambda: click_boton("X^"))
     botonRaiz_x = Button(ventana, text="x√", width=5,
-                         height=2, command=lambda: click_boton("x√"))
+                         height=2, command=lambda: click_boton("x√()"))
     botonRaiz_3 = Button(ventana, text="3√", width=5,
-                         height=2, command=lambda: click_boton("3√"))
+                         height=2, command=lambda: click_boton("3√()"))
     botonFactorial = Button(ventana, text="!", width=5,
                             height=2, command=lambda: click_boton("!"))
     botonpi = Button(ventana, text="π", width=5, height=2,

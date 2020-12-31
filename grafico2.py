@@ -68,7 +68,7 @@ def Grafico2(x):
     botonParentesisCierre = Button(
         interGrafico, text=")", width=5, height=2, command=lambda: click_boton(")"))
     botonRaiz = Button(interGrafico, text="√", width=5,
-                       height=2, command=lambda: click_boton("√"))
+                       height=2, command=lambda: click_boton("√()"))
     botonPunto = Button(interGrafico, text=".", width=5,
                         height=2, command=lambda: click_boton("."))
     botonX = Button(interGrafico, text="x", width=5, height=2,
@@ -94,9 +94,9 @@ def Grafico2(x):
     botonXelavado = Button(interGrafico, text="X^y", width=5,
                            height=2, command=lambda: click_boton("X^"))
     botonRaiz_x = Button(interGrafico, text="x√", width=5,
-                         height=2, command=lambda: click_boton("x√"))
+                         height=2, command=lambda: click_boton("x√()"))
     botonRaiz_3 = Button(interGrafico, text="3√", width=5,
-                         height=2, command=lambda: click_boton("3√"))
+                         height=2, command=lambda: click_boton("3√()"))
     botonFactorial = Button(interGrafico, text="!", width=5,
                             height=2, command=lambda: click_boton("!"))
     botonpi = Button(interGrafico, text="π", width=5,
