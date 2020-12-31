@@ -413,5 +413,3 @@ def numeros_atras(fun,pos):
 		else:
 			break
 	return x
-
-print(ecuacion(x))
