@@ -3,7 +3,7 @@ import simpson3_8
 import brain
 class simpson_tercio:
 	def __init__(self,funcion,a,b,num_iteraciones = 9):
-		self.funcion = brain.ecuacion(funcion)
+		self.funcion = funcion
 		self.a = a
 		self.b = b
 		self.num_iteraciones = num_iteraciones
@@ -12,8 +12,6 @@ class simpson_tercio:
 		return (self.b - self.a)/self.num_iteraciones
 
 	def operacion(self):
-		print(brain.ecuacion(self.funcion))
-		print(self.funcion)
 		resultado = []
 		total = 0
 

@@ -14,43 +14,33 @@ import results
 def Grafico3(x):
 
     interGrafico = Tk()
-    interGrafico.geometry("1100x700")
+    interGrafico.geometry("500x500")
     interGrafico.config(background="#213141")
     interGrafico.title("Calculadora")
     interGrafico.resizable(False, False)
 
     # Entradas de texto y labels ------------------------------------------------------
-    texto = Entry(interGrafico, background="white", foreground="black", font=(
-        "Open-Sans", 25))
-    texto.grid(row=0, column=1, columnspan=8, padx=10,
-               pady=50)
-    textoDos = Entry(interGrafico, background="white", foreground="black", font=(
-        "Open-Sans", 25))
-    textoDos.grid(row=1, column=1, columnspan=8, padx=10,
-                  pady=50)
-    textoTres = Entry(interGrafico, background="white", foreground="black", font=(
-        "Open-Sans", 25))
-    textoTres.grid(row=0, column=10, columnspan=8, padx=10,
-                   pady=50)
+    Label(interGrafico, text="b=",state="disabled" ,background="#213141", foreground="white", font=("Helvetica", 20),).grid(pady=0, row=0, column=0)
+    Label(interGrafico, text="∫", state="disabled" , background="#213141", foreground="white", font=("Helvetica", 90)).grid( pady=0, row=1, column=0)
+    Label(interGrafico, text="a=",state="disabled",background="#213141", foreground="white", font=("Helvetica", 20),).grid( pady=0, row=2, column=0)
+    Label(interGrafico, text="N Iteraciones =",state="disabled",background="#213141", foreground="white", font=("Helvetica", 20),).grid( pady=0, row=2, column=2,columnspan=4)
 
-    textoCinco = Entry(interGrafico, background="white", foreground="black", font=(
-        "Open-Sans", 25))
-    textoCinco.grid(row=1, column=10, columnspan=8, padx=10,
-                    pady=50)
+    textoDos =  Entry(interGrafico, width=5)
+    textoDos.grid(padx=0, row=0, column=1,columnspan=1)
 
-    aa = Label(interGrafico, state="disabled", width=5, height=2,
-               background="white", foreground="black", font=("Helvetica", 15), text="∫")
-    aa.grid(row=0, column=0, columnspan=1, padx=5, pady=5)
-    aaDos = Label(interGrafico, state="disabled", width=12, height=2,
-                  background="white", foreground="black", font=("Helvetica", 15), text="a")
-    aaDos.grid(row=1, column=0, columnspan=1, padx=5, pady=5)
-    aaTres = Label(interGrafico, state="disabled", width=12, height=2,
-                   background="white", foreground="black", font=("Helvetica", 15), text="b")
-    aaTres.grid(row=0, column=9, columnspan=1, padx=5, pady=5)
+    texto = Entry(interGrafico, width=20,background="white", foreground="black", font=("Open-Sans", 25))
+    texto.grid(padx=0, row=1, column=1,columnspan=7)
 
-    aaCuatro = Label(interGrafico, state="disabled", width=15, height=2,
-                     background="white", foreground="black", font=("Helvetica", 15), text="Nº Iteraciones =")
-    aaCuatro.grid(row=1, column=9, columnspan=1, padx=5, pady=5)
+    textoTres = Entry(interGrafico, width=5)
+    textoTres.grid(padx=0, row=2, column=1,columnspan=1)
+
+    textoCinco = Entry(interGrafico, width=5)
+    textoCinco.grid(padx=0, row=2, column=6,columnspan=1)
+
+    #textoCinco = Entry(interGrafico, background="white", foreground="black", font=("Open-Sans", 25))
+    #textoCinco.grid(row=1, column=1, columnspan=2)
+    #aaCuatro = Label(interGrafico, state="disabled", width=15, height=2,background="white", foreground="black", font=("Helvetica", 15), text="Nº Iteraciones =")
+    #aaCuatro.grid(row=1, column=2, columnspan=1)
 
     # -------------------------------------------------------------------------------
 
@@ -79,7 +69,7 @@ def Grafico3(x):
     botonBorrar = Button(interGrafico, text="⌫", width=5,
                                             height=2, command=lambda: borrarElemento())
     botonEnter = Button(interGrafico, text="Enter", width=5,
-                        height=2, command=lambda: confirmar(texto.get(), int(textoDos.get()), int(textoTres.get()),  int(textoCinco.get())))
+                        height=2, command=lambda: confirmar(texto.get(), textoTres.get(), textoDos.get(), textoCinco.get()))
     botonResta = Button(interGrafico, text="-", width=5,
                         height=2, command=lambda: click_boton("-"))
     botonSuma = Button(interGrafico, text="+", width=5,
@@ -211,44 +201,66 @@ def Grafico3(x):
         textoCinco.delete(0, END)
 
     def confirmar(fun, a, b, itr):
+        a = int(a)
+        b = int(b)
+        itr = int(itr)
         if x == 6:  # trapecio
-            objeto = trapecio.trapecio_1(fun, a, b, itr)
-            y = objeto.operacion()
+            for i in range(1):
+                try:
 
-            cad = str(y[0]) + "\n-----------------------\n" + \
-                str(y[1]) + "\n-----------------------\n" + str(y[2])
-            interGrafico.destroy()
-            results.Results(cad)
+                    objeto = trapecio.trapecio_1(fun, a, b, itr)
+                    y = objeto.operacion()
 
-            # print(y[0])
-            # print(y[1])
-            # print(y[2])
+                    cad = str(y[0]) + "\n-----------------------\n" + \
+                        str(y[1]) + "\n-----------------------\n" + str(y[2])
+                    interGrafico.destroy()
+                    results.Results(cad)
+
+                    # print(y[0])
+                    # print(y[1])
+                    # print(y[2])
+                except Exception as e:
+                    messagebox.showerror(
+                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
         elif x == 7:  # simpson 1/3
-            objeto = simpson1_3.simpson_tercio(fun, a, b, itr)
-            y = objeto.operacion()
+            for i in range(1):
+                try:
 
-            cad = str(y[0]) + "\n-----------------------\n" + \
-                str(y[1]) + "\n-----------------------\n" + str(y[2])
-            interGrafico.destroy()
-            results.Results(cad)
+                    objeto = simpson1_3.simpson_tercio(fun, a, b, itr)
+                    y = objeto.operacion()
 
-            # print(y[0])
-            # print(y[1])
-            # print(y[2])
+                    cad = str(y[0]) + "\n-----------------------\n" + \
+                        str(y[1]) + "\n-----------------------\n" + str(y[2])
+                    interGrafico.destroy()
+                    results.Results(cad)
+
+                    # print(y[0])
+                    # print(y[1])
+                    # print(y[2])
+                except Exception as e:
+                    messagebox.showerror(
+                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
         elif x == 8:  # simpson 3/8
-            objeto = simpson3_8.simpson_tresoctavos(fun, a, b, itr)
-            y = objeto.operacion()
+            for i in range(1):
+                try:
 
-            cad = str(y[0]) + "\n-----------------------\n" + \
-                str(y[1]) + "\n-----------------------\n" + str(y[2])
-            interGrafico.destroy()
-            results.Results(cad)
+                    objeto = simpson3_8.simpson_tresoctavos(fun, a, b, itr)
+                    y = objeto.operacion()
 
-            # print(y[0])
-            # print(y[1])
-            # print(y[2])
+                    cad = str(y[0]) + "\n-----------------------\n" + \
+                        str(y[1]) + "\n-----------------------\n" + str(y[2])
+                    interGrafico.destroy()
+                    results.Results(cad)
+
+                    # print(y[0])
+                    # print(y[1])
+                    # print(y[2])
+
+                except Exception as e:
+                    messagebox.showerror(
+                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
         elif x == 9:  # simpsonS
             for i in range(1):

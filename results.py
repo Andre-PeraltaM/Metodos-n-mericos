@@ -3,7 +3,7 @@ from tkinter import *
 
 def Results(data):
     root = Tk()
-    root.geometry("700x500")
+    root.geometry("1000x500")
     root.config(background="#213141")
     root.title("Resultados")
     root.resizable(False, False)
