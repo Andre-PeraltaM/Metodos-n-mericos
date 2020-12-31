@@ -2,7 +2,7 @@ import puntoFijo
 import results
 from tkinter import *
 from tkinter import messagebox
-
+import brain
 
 def Grafico4(x):
     interGrafico = Tk()
@@ -233,8 +233,11 @@ def Grafico4(x):
         if x == 1:
             for i in range(1):
                 try:
+                    ecur = brain.ecuacion(ecu)
+                    despUnor = brain.ecuacion(despUno)
+                    despDosr = brain.ecuacion(despDos)
 
-                    obj = puntoFijo.PuntoFijo(ecu, despUno, despDos, valA, valB, iterations)
+                    obj = puntoFijo.PuntoFijo(ecur, despUnor, despDosr, valA, valB, iterations)
                     interGrafico.destroy()                   
                     finalResultsOne, finalResultsTwo = obj.calculate()
                     cad = str(finalResultsOne) + \
