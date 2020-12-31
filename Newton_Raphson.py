@@ -5,6 +5,8 @@ import math
 import sympy as sy
 import brain
 import pandas as pd
+
+
 class NewtonRapson:
     def __init__(self, funcion):
         self.funcion = brain.ecuacion2(funcion)
@@ -12,29 +14,26 @@ class NewtonRapson:
     def calculate(self):
 
         ldict = {}
-        sToCode  = "x = sy.symbols('x')\nf = myExp "
+        sToCode = "x = sy.symbols('x')\nf = myExp "
         sToCode = sToCode.replace("myExp", self.funcion)
         exec(sToCode, globals(), ldict)
         f = ldict['f']
 
         xi = 1
-        itr = 6 # numero de iteraciones a realizar 
+        itr = 6  # numero de iteraciones a realizar
 
-        xplt = np.linspace(0.00001, 100, 2000) #para funciones con los logs 
+        xplt = np.linspace(0.00001, 100, 2000)  # para funciones con los logs
         yplt = np.array([], float)
 
         dx = sy.diff(f)
         dx = dx.doit()
 
-        v = [f"f(x) = {f}" , f"f'(x) = {dx}" ,f"Xi = {xi}"]
+        v = [f"f(x) = {f}", f"f'(x) = {dx}", f"Xi = {xi}"]
 
         f = str(f)
         dx = str(dx)
 
-
         dx = brain.ecuacion2(dx)
-
-
 
         strCode = """fun = lambda x : myExp"""
         strCode = strCode.replace("myExp", f)
@@ -47,23 +46,20 @@ class NewtonRapson:
         fun_der = ldict['fun_der']
 
         filas = []
-        columnas = ['','']
+        columnas = ['', '']
         xxx = []
 
         for xp in range(itr):
-            xi = xi - ( fun(xi) / fun_der(xi) )
-            filas.append(f"X({xp + 1})")  
-            xxx.append([ " ->", xi])
+            xi = xi - (fun(xi) / fun_der(xi))
+            filas.append(f"X({xp + 1})")
+            xxx.append([" ->", xi])
 
-        resultadosFinales = pd.DataFrame(xxx,filas,columnas)
-            
-        for xp in xplt:         
+        resultadosFinales = pd.DataFrame(xxx, filas, columnas)
+
+        for xp in xplt:
             res = fun(xp)
-            yplt = np.append(yplt , res)
+            yplt = np.append(yplt, res)
 
-        return v, resultadosFinales, f"Raíz -> {xi:.5f}"
-
-        '''
         plt.plot(xplt, yplt, 'b-')
         plt.plot(xi, 0, 'ro')
         plt.xlabel('X')
@@ -71,10 +67,13 @@ class NewtonRapson:
         winTitle = plt.gcf()
         winTitle.canvas.set_window_title("Newton - Raphson")
         plt.grid()
-        gridSize = [-(10), (10), -(10), (10)] #Limite de ejes
+        gridSize = [-(10), (10), -(10), (10)]  # Limite de ejes
         plt.axis(gridSize)
         plt.show()
-        '''
+
+        return v, resultadosFinales, f"Raíz -> {xi:.5f}"
+
+
 '''
 #f = sy.log(x) - sy.cos(x) #función
 myFunc = NewtonRapson("sy.log(x) - sy.cos(x)")
