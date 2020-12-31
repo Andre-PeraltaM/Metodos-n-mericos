@@ -206,22 +206,19 @@ def Grafico3(x):
         itr = int(itr)
         if x == 6:  # trapecio
             for i in range(1):
-                try:
 
-                    objeto = trapecio.trapecio_1(fun, a, b, itr)
-                    y = objeto.operacion()
+                objeto = trapecio.trapecio_1(fun, a, b, itr)
+                y = objeto.operacion()
+                interGrafico.destroy()
+                objeto.graf()
 
-                    cad = str(y[0]) + "\n-----------------------\n" + \
-                        str(y[1]) + "\n-----------------------\n" + "Area = " + str(y[2]) + " u^2"
-                    interGrafico.destroy()
-                    results.Results(cad)
+                cad = str(y[0]) + "\n-----------------------\n" + \
+                    str(y[1]) + "\n-----------------------\n" + "Area = " + str(y[2]) + " u^2"
+                results.Results(cad)
 
-                    # print(y[0])
-                    # print(y[1])
-                    # print(y[2])
-                except Exception as e:
-                    messagebox.showerror(
-                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+                # print(y[0])
+                # print(y[1])
+                # print(y[2])
 
         elif x == 7:  # simpson 1/3
             for i in range(1):
@@ -229,10 +226,11 @@ def Grafico3(x):
 
                     objeto = simpson1_3.simpson_tercio(fun, a, b, itr)
                     y = objeto.operacion()
+                    interGrafico.destroy()       
+                    objeto.graf()
 
                     cad = str(y[0]) + "\n-----------------------\n" + \
                         str(y[1]) + "\n-----------------------\n" + "Area = " + str(y[2]) + " u^2"
-                    interGrafico.destroy()
                     results.Results(cad)
 
                     # print(y[0])
@@ -248,10 +246,11 @@ def Grafico3(x):
 
                     objeto = simpson3_8.simpson_tresoctavos(fun, a, b, itr)
                     y = objeto.operacion()
+                    interGrafico.destroy()
+                    objeto.graf()
 
                     cad = str(y[0]) + "\n-----------------------\n" + \
                         str(y[1]) + "\n-----------------------\n" + "Area = " + str(y[2]) + " u^2"
-                    interGrafico.destroy()
                     results.Results(cad)
 
                     # print(y[0])
@@ -267,11 +266,12 @@ def Grafico3(x):
                 try:
 
                     objeto = simpson.Simp(fun, a, b, itr)
+                    interGrafico.destroy()
                     y = objeto.solucion()
+                    objeto.graf()
 
                     cad = str(y[0]) + "\n-----------------------\n" + \
                         str(y[1]) + "\n-----------------------\n" + str(y[2])
-                    interGrafico.destroy()
                     results.Results(cad)
 
                     # print(y[0])

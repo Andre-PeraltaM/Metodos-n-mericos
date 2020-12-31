@@ -17,12 +17,15 @@ class trapecio_1:
         return (self.b - self.a)/self.num_iteraciones
 
     def graf(self):
-    
-        p0 = ( self.funcion )
-        p = sy.plot( p0, xlim=[-10,10], ylim=[-5,5], title=self.funcion)
-        p[0].line_color = 'red'
-        p[1].line_color = 'blue'
-        p.show()
+        try:
+            p0 = ( self.funcion )
+            p = sy.plot( p0, xlim=[-100,100], ylim=[-50,50], title=self.funcion)
+            p[0].line_color = 'red'
+            p[1].line_color = 'blue'
+            p.show()            
+        except Exception as e:
+            pass   
+
 
     def operacion(self):
         global x, fx, n, x0
@@ -63,8 +66,6 @@ class trapecio_1:
                 x = x+f' {resultado[i]}*2 + '
 
         resultadosFinales = pd.DataFrame(datos, n, zzz)
-        
-        self.graf()
 
         return resultadosFinales, x, total
 

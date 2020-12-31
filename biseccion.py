@@ -4,7 +4,7 @@ import pandas as pd
 
 class Biseccion:
 	def __init__(self,funtion):
-		self.funcion = funtion#este será un encabezado de columna
+		self.funcion = brain.ecuacion(funtion)#este será un encabezado de columna
 	def bolzano(self,a,b):
 		'''
 		Ecuación del teorema de Bolzano
@@ -44,7 +44,7 @@ class Biseccion:
 
 	def solucion(self):
 
-		funcionConstruida = brain.ecuacion(self.funcion)
+		funcionConstruida = self.funcion
 
 		listaY = brain.tabulacion(funcionConstruida)
 
@@ -102,8 +102,8 @@ class Biseccion:
 		#brain.grafica(f)
 		return tablaTabulacion,resultadosFinales
 
-# x = Biseccion('x^4+3*x^3-2')#Ejemplo
-# y =x.solucion()
+#x = Biseccion('x^4+3x^3-2')#Ejemplo
+#y =x.solucion()
 
 # print(y[0])
 # print(y[1])

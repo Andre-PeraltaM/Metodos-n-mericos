@@ -199,16 +199,19 @@ def Grafico1(x):
 
             try:
 
-                obj = BiseccionGrafica.Biseccion()
-                obj.calculate(texto.get())
 
                 for i in range(1):
+                    texto_1 = texto.get()
 
-                    objeto = biseccion.Biseccion(texto.get())
+                    objeto = biseccion.Biseccion(texto_1)
+                    ventana.destroy()
+
+                    obj = BiseccionGrafica.Biseccion()
+                    obj.calculate(brain.ecuacion(texto_1))
+
                     y = objeto.solucion()
 
                     cad = str(y[0]) + "\n---------------------\n" + str(y[1])
-                    ventana.destroy()
                     results.Results(cad)
 
                     # print(y[0])
@@ -220,21 +223,21 @@ def Grafico1(x):
                     message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
         elif x == 2:  # N-R
-            for i in range(1):
-                try:
-                    objeto = Newton_Raphson.NewtonRapson(texto.get())
-                    y = objeto.calculate()
+            try:
+                texto_1 = texto.get()
+                objeto = Newton_Raphson.NewtonRapson(texto_1)
+                y = objeto.calculate()
 
-                    cad = str(y[0]) + "\n---------------------\n" + \
-                        str(y[1]) + "\n---------------------\n" + str(y[2])
-                    ventana.destroy()
-                    results.Results(cad)
-                    # print(y[0])
-                    # print(y[1])
-                    # print(y[2])
+                cad = str(y[0]) + "\n---------------------\n" + \
+                    str(y[1]) + "\n---------------------\n" + str(y[2])
+                ventana.destroy()
+                results.Results(cad)
+                # print(y[0])
+                # print(y[1])
+                # print(y[2])
 
-                except Exception as e:
-                    messagebox.showerror(
-                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+            except Exception as e:
+                messagebox.showerror(
+                    message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
     ventana.mainloop()

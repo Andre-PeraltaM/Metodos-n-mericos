@@ -16,7 +16,7 @@ class Biseccion:
         itr = 16
             
         ecu = ecu.replace('^', "**")
-        print ( ecu )
+        #print ( ecu )
 
         #fun = lambda x: x**3 + x - 1 #expresión
         ldict = {}
@@ -29,7 +29,7 @@ class Biseccion:
         b = limSup #x superior
 
         x = self.biseccion(fun, a, b , itr)
-        print (f"Raiz -> {x:.4f}")
+        #print (f"Raiz -> {x:.4f}")
         raiz = x
 
 

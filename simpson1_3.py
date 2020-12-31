@@ -6,7 +6,16 @@ class simpson_tercio:
 		self.a = a
 		self.b = b
 		self.num_iteraciones = num_iteraciones
-
+	def graf(self):
+		try:
+			p0 = (self.funcion)
+			p = sy.plot(p0, xlim=[-100, 100], ylim=[-50, 50], title=self.funcion)
+			p[0].line_color = 'red'
+			p[1].line_color = 'blue'
+			p.show()            
+		except Exception as e:
+			pass
+            
 	def h(self):
 		return (self.b - self.a)/self.num_iteraciones
 

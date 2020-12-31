@@ -161,11 +161,11 @@ def Grafico2(x):
                 try:
 
                     obj = lagranje.lagran(lx, ly)
+                    interGrafico.destroy()                
                     ecuG, ecuM = obj.procedimiento()
 
                     cad = str(ecuG) + \
                         "\n---------------------------\n" + str(ecuM)
-                    interGrafico.destroy()
                     results.Results(cad)
                 except Exception as e:
                     messagebox.showerror(
@@ -177,12 +177,12 @@ def Grafico2(x):
         elif x == 5:  # Minimos
             for i in range(1):
                 try:
-
+                    
                     obj = minimosCuadrados.miniCuadrados()
+                    interGrafico.destroy()
                     r1, r2, r3 = obj.procedimiento(lx, ly)
                     cad = str(r1) + "\n---------------------------\n" + \
                         str(r2) + "\n---------------------------\n" + str(r3)
-                    interGrafico.destroy()
                     results.Results(cad)
                     
                 except Exception as e:

@@ -74,11 +74,15 @@ class Simp:
         self.num_iteraciones = num_iteraciones
 
     def graf(self):
-        p0 = (self.funcion)
-        p = sy.plot(p0, xlim=[-10, 10], ylim=[-5, 5], title=self.funcion)
-        p[0].line_color = 'red'
-        p[1].line_color = 'blue'
-        p.show()
+        try:
+            p0 = (self.funcion)
+            p = sy.plot(p0, xlim=[-100, 100], ylim=[-50, 50], title=self.funcion)
+            p[0].line_color = 'red'
+            p[1].line_color = 'blue'
+            p.show()            
+        except Exception as e:
+            pass
+
 
     def solucion(self):
         un_tercio = simpson_tercio(
@@ -89,8 +93,6 @@ class Simp:
         x = un_tercio.operacion()
 
         y = tres_octavos.operacion()
-
-        self.graf()
 
         return x, y[1:], (x[2]+y[2])
 

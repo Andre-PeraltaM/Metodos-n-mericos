@@ -396,4 +396,3 @@ def numeros_atras(fun,pos):
 	return x
 
 
-

@@ -234,13 +234,12 @@ def Grafico4(x):
             for i in range(1):
                 try:
 
-                    obj = puntoFijo.PuntoFijo(
-                        ecu, despUno, despDos, valA, valB, iterations)
+                    obj = puntoFijo.PuntoFijo(ecu, despUno, despDos, valA, valB, iterations)
+                    interGrafico.destroy()                   
                     finalResultsOne, finalResultsTwo = obj.calculate()
                     cad = str(finalResultsOne) + \
                         "\n---------------------------------\n" + \
                         str(finalResultsTwo)
-                    interGrafico.destroy()
                     results.Results(cad)
                 except Exception as e:
                     messagebox.showerror(
