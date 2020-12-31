@@ -2,7 +2,6 @@ from tkinter import *
 import brain
 import biseccion
 import BiseccionGrafica
-import mcLaurin
 import Newton_Raphson
 import results
 import matplotlib.pyplot as plt
@@ -197,30 +196,28 @@ def Grafico1(x):
 
     def confirmar():
         if x == 0:  # biseccion
-        
+
             try:
-        
+
                 obj = BiseccionGrafica.Biseccion()
                 obj.calculate(texto.get())
-            
+
                 for i in range(1):
-                   
+
                     objeto = biseccion.Biseccion(texto.get())
                     y = objeto.solucion()
-    
+
                     cad = str(y[0]) + "\n---------------------\n" + str(y[1])
                     ventana.destroy()
                     results.Results(cad)
-                    
-                    
+
                     # print(y[0])
                     # print(y[1])
                     break
-                
+
             except Exception as e:
-                    messagebox.showerror(
-                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
-                
+                messagebox.showerror(
+                    message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
         elif x == 2:  # N-R
             for i in range(1):
@@ -236,21 +233,6 @@ def Grafico1(x):
                     # print(y[1])
                     # print(y[2])
 
-                except Exception as e:
-                    messagebox.showerror(
-                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
-
-        elif x == 3:  # Mc
-            for i in range(1):
-                try:
-                    obj = mcLaurin.McTaylor(texto.get())
-                    r1, r2 = obj.calculate()
-
-                    cad = str(r1) + "\n---------------------\n" + str(r2)
-                    ventana.destroy()
-                    results.Results(cad)
-                    # print(r1)
-                    # print(r2)
                 except Exception as e:
                     messagebox.showerror(
                         message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
