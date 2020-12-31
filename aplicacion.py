@@ -2,6 +2,7 @@ import grafico1
 import grafico2
 import grafico3
 import grafico4
+import graficoMc
 from tkinter import *
 
 def funcion(x):
@@ -25,7 +26,7 @@ def funcion(x):
     elif x == 3:  # McLaurin
         mywindow.destroy()
 
-        grafico1.Grafico1(x)
+        graficoMc.GraficoMc(x)
 
     elif x == 4:  # Lagrange
         mywindow.destroy()

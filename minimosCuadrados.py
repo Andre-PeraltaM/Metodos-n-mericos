@@ -2,6 +2,7 @@ import math
 import pandas as pd
 from pylab import *
 import brain as br
+import minimosCuadradoGrafica 
 
 class miniCuadrados:
 	def __init__(self):
@@ -16,6 +17,10 @@ class miniCuadrados:
         
 		filax = filax.split(' ')
 		filay = filay.split(' ')
+        
+		objGraf = minimosCuadradoGrafica.MinCuadradosGrafica()
+		objGraf.process( filax, filay )
+        
 
 		filax = list(map(float,filax))
 		filay = list(map(float,filay))

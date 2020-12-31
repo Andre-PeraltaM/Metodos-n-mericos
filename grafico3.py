@@ -212,7 +212,7 @@ def Grafico3(x):
                     y = objeto.operacion()
 
                     cad = str(y[0]) + "\n-----------------------\n" + \
-                        str(y[1]) + "\n-----------------------\n" + str(y[2])
+                        str(y[1]) + "\n-----------------------\n" + "Area = " + str(y[2]) + " u^2"
                     interGrafico.destroy()
                     results.Results(cad)
 
@@ -231,7 +231,7 @@ def Grafico3(x):
                     y = objeto.operacion()
 
                     cad = str(y[0]) + "\n-----------------------\n" + \
-                        str(y[1]) + "\n-----------------------\n" + str(y[2])
+                        str(y[1]) + "\n-----------------------\n" + "Area = " + str(y[2]) + " u^2"
                     interGrafico.destroy()
                     results.Results(cad)
 
@@ -250,7 +250,7 @@ def Grafico3(x):
                     y = objeto.operacion()
 
                     cad = str(y[0]) + "\n-----------------------\n" + \
-                        str(y[1]) + "\n-----------------------\n" + str(y[2])
+                        str(y[1]) + "\n-----------------------\n" + "Area = " + str(y[2]) + " u^2"
                     interGrafico.destroy()
                     results.Results(cad)
 

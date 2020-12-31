@@ -1,6 +1,8 @@
 import pandas as pd
 import simpson3_8
 import brain
+import sympy as sy
+
 class simpson_tercio:
 	def __init__(self,funcion,a,b,num_iteraciones = 9):
 		self.funcion = funcion
@@ -10,6 +12,7 @@ class simpson_tercio:
 
 	def h(self):
 		return (self.b - self.a)/self.num_iteraciones
+	
 
 	def operacion(self):
 		resultado = []
@@ -70,6 +73,13 @@ class Simp:
 		self.a = a
 		self.b = b
 		self.num_iteraciones = num_iteraciones
+	
+	def graf(self):
+		p0 = ( self.funcion )
+		p = sy.plot( p0, xlim=[-10,10], ylim=[-5,5], title=self.funcion)
+		p[0].line_color = 'red'
+		p[1].line_color = 'blue'
+		p.show()
         
 	def solucion(self):
 		un_tercio = simpson_tercio(self.funcion,self.a,self.b,self.num_iteraciones)
@@ -79,10 +89,10 @@ class Simp:
 
 		y = tres_octavos.operacion()
 
-
+		self.graf()
+        
 		return x,y[1:],(x[2]+y[2])	
-'''
+
 xxxxx = Simp('1/(1+x)',0,1,6)
 
 print(xxxxx.solucion())
-'''

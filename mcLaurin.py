@@ -36,7 +36,7 @@ import pandas as pd
 
 class McTaylor:
     
-    def __init__(self, fun):
+    def __init__(self, fun, x0):
         fun = fun.replace("ln","sy.ln")
         fun = fun.replace("log","sy.log")
         fun = fun.replace("cos","sy.cos")
@@ -61,6 +61,7 @@ class McTaylor:
         fun = fun.replace("e","math.e")
         
         self.f = fun
+        self.x0 = x0
         
     def calculate(self):
         
@@ -74,9 +75,10 @@ class McTaylor:
         sToCode = sToCode.replace("myExp", self.f)
         exec(sToCode, globals(), ldict)
         f = ldict['f']
+        fIni = f
         
-        
-        xi = 1 
+        #xi = 0 #---------- 
+        xi = self.x0
         itr = 7
         res = 0
         listx = np.array([])
@@ -112,11 +114,36 @@ class McTaylor:
         # display(xxx)
         # print(xxx)
         
+        # sumad =  (  xxx[0] + xxx[1] + xxx[2] + xxx[3] + xxx[4] + xxx[5] + xxx[6] )
+        # print("-------", sumad)
+        
+        p1 = ( xxx[0] )
+        p2 = ( xxx[0] + xxx[1]) 
+        p3 = (  xxx[0] + xxx[1] + xxx[2] ) 
+        p4 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] )
+        p5 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] + xxx[4] ) 
+        p6 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] + xxx[4] + xxx[5] )
+        p7 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] + xxx[4] + xxx[5] + xxx[6] )
+
+        p0 = ( fIni )
+        
+        p = sy.plot( p0, p1, p2, p3, p4, p5, p6, p7, xlim=[-10,10], ylim=[-5,5], title=fIni)
+        
+        p[0].line_color = 'red'
+        p[1].line_color = 'blue'
+        p[2].line_color = 'green'
+        p[3].line_color = 'black'
+        p[4].line_color = 'yellow'
+        p[5].line_color = 'gray'
+        p[6].line_color = 'cyan'
+        p[7].line_color = 'magenta'
+        
+        p.show()
+        
         return resultadosFinales, xxx
-'''
-#obj = McTaylor('log(x)')
-obj = McTaylor('ln(1+x)')
-r1, r2 = obj.calculate()
-print(r1)
-print(r2)
-'''
+
+#obj = McTaylor('log(x)', 1)
+#obj = McTaylor('sin(x)', 0)
+# r1, r2 = obj.calculate()
+# print(r1)
+# print(r2)

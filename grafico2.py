@@ -184,10 +184,10 @@ def Grafico2(x):
                         str(r2) + "\n---------------------------\n" + str(r3)
                     interGrafico.destroy()
                     results.Results(cad)
-
+                    
                 except Exception as e:
-                    messagebox.showerror(
-                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+                     messagebox.showerror(
+                         message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
             # print(r1)
             # print(r2)

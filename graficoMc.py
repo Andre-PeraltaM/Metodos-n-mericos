@@ -9,19 +9,38 @@ import matplotlib.pyplot as plt
 from tkinter import messagebox
 
 
-def Grafico1(x):
+def GraficoMc(x):
     ventana = Tk()
     ventana.config(background="#213141")
     ventana.title("Calculadora")
+    
+    
     texto = Entry(ventana, background="white", foreground="black",
                   font=("Open-Sans", 25))
 
-    texto.grid(row=0, column=1, columnspan=8, padx=10,
+    texto.grid(row=0, column=1, columnspan=5, padx=5,
                pady=50)
-    ventana.resizable(False, False)
+    
+    
+    texto2 = Entry(ventana, background="white", foreground="black",
+                  font=("Open-Sans", 25))
+    texto2.grid(row=0, column=7, columnspan=8, padx=5,
+               pady=50)
+    
+  
+    
+    ventana.resizable(True, True)
+    
     aa = Label(ventana, state="disabled", width=5, height=2, background="white",
                foreground="black", font=("Helvetica", 15), text="f(x)=")
     aa.grid(row=0, column=0, columnspan=1, padx=5, pady=5)
+    
+    
+    aa2 = Label(ventana, state="disabled", width=5, height=2, background="white",
+               foreground="black", font=("Helvetica", 15), text="Xo=")
+    aa2.grid(row=0, column=6, columnspan=1, padx=5, pady=5)
+    
+
 
     boton1 = Button(ventana, text="1", width=5, height=2,
                     command=lambda: click_boton(1))
@@ -187,63 +206,25 @@ def Grafico1(x):
         x = texto.get()
         texto.delete(0, END)
         texto.insert(0, x[:-1])
+        
+     
 
     def click_boton(valor):
         i = len(texto.get())
         texto.insert(i, valor)
+    
 
     def borrar():
         texto.delete(0, END)
+      
 
     def confirmar():
-        if x == 0:  # biseccion
-        
-            try:
-        
-                obj = BiseccionGrafica.Biseccion()
-                obj.calculate(texto.get())
-            
-                for i in range(1):
-                   
-                    objeto = biseccion.Biseccion(texto.get())
-                    y = objeto.solucion()
-    
-                    cad = str(y[0]) + "\n---------------------\n" + str(y[1])
-                    ventana.destroy()
-                    results.Results(cad)
-                    
-                    
-                    # print(y[0])
-                    # print(y[1])
-                    break
-                
-            except Exception as e:
-                    messagebox.showerror(
-                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
-                
+       
 
-        elif x == 2:  # N-R
+        if x == 3:  # Mc
             for i in range(1):
                 try:
-                    objeto = Newton_Raphson.NewtonRapson(texto.get())
-                    y = objeto.calculate()
-
-                    cad = str(y[0]) + "\n---------------------\n" + \
-                        str(y[1]) + "\n---------------------\n" + str(y[2])
-                    ventana.destroy()
-                    results.Results(cad)
-                    # print(y[0])
-                    # print(y[1])
-                    # print(y[2])
-
-                except Exception as e:
-                    messagebox.showerror(
-                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
-
-        elif x == 3:  # Mc
-            for i in range(1):
-                try:
-                    obj = mcLaurin.McTaylor(texto.get())
+                    obj = mcLaurin.McTaylor(texto.get(), int( texto2.get() ) )
                     r1, r2 = obj.calculate()
 
                     cad = str(r1) + "\n---------------------\n" + str(r2)

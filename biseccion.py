@@ -101,10 +101,9 @@ class Biseccion:
 		resultadosFinales['  Error  '] = ['-','-','-'] + resultadoError
 		#brain.grafica(f)
 		return tablaTabulacion,resultadosFinales
-'''
-x = Biseccion('x^4+3x^3-2')#Ejemplo
-y =x.solucion()
 
-print(y[0])
-print(y[1])
-'''
+# x = Biseccion('x^4+3*x^3-2')#Ejemplo
+# y =x.solucion()
+
+# print(y[0])
+# print(y[1])
