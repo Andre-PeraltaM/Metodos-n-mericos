@@ -62,9 +62,9 @@ class PuntoFijo:
 
         try:
             for i in range(itr):
-                value = fun_desp(value)
+                self.value = fun_desp(self.value)
                 
-                if value < 1000000:
+                if self.value < 1000000:
                 
                     g1.append(f"g1(x{i + 1}) = ")
                     d1.append(f'{value:.8f}')
@@ -123,7 +123,7 @@ class PuntoFijo:
 
 #func = PuntoFijo("x^3+x-6", "3√(6-x)", "6-x^3",0, 2, 10 )
 
-'''
+
 func = PuntoFijo("x^3 + (x) - 6", " math.pow(6-x,(1/3)) ", "6 - (x^3)" , 0, 2, 10 )
 
 f1, f2 = func.calculate()
@@ -131,4 +131,3 @@ func.graf()
 
 print(f1)
 print(f2)
-'''
