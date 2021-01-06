@@ -5,7 +5,7 @@ import pandas as pd
 
 
 class PuntoFijo:
-    def __init__(self, ecu, desp1, desp2, a, b, itr = 10):
+    def __init__(self, ecu, desp1, desp2, a, b, itr=10):
         self.ecu = ecu
         self.ecu_desp = desp1
         self.ecu_desp_2 = desp2
@@ -28,12 +28,12 @@ class PuntoFijo:
         self.ecu_desp = self.ecu_desp.replace('^', "**")
         self.ecu_desp_2 = self.ecu_desp_2.replace('^', "**")
 
-        self.xplt = np.linspace(-10, 10, 200) 
+        self.xplt = np.linspace(-10, 10, 200)
         self.yplt = np.array([], float)
         self.yplt_desp = np.array([], float)
 
         ldict = {}
-        sToCode  = "fun = lambda x: myExp "
+        sToCode = "fun = lambda x: myExp "
         sToCode = sToCode.replace("myExp", self.ecu)
         exec(sToCode, globals(), ldict)
         fun = ldict['fun']
@@ -52,20 +52,20 @@ class PuntoFijo:
         g2 = []
         d1 = []
         d2 = []
-        
+
         error_en_1 = False
         error_en_2 = False
 
-        for xp in self.xplt: #evalua
+        for xp in self.xplt:  # evalua
             res = fun(xp)
-            self.yplt = np.append(self.yplt , res)
+            self.yplt = np.append(self.yplt, res)
 
         try:
             for i in range(itr):
                 self.value = fun_desp(self.value)
-                
+
                 if self.value < 1000000:
-                
+
                     g1.append(f"g1(x{i + 1}) = ")
                     d1.append(f'{value:.8f}')
                 else:
@@ -73,22 +73,21 @@ class PuntoFijo:
                     d2.append(f" ES EL DESPEJE INCORRECTO ")
                     error_en_1 = True
                     break
-                    
+
         except:
             print("Este no es el despeje correcto")
-
 
         print("-------------------------")
 
         try:
             for i in range(itr):
-                self.value_2 = round( fun_desp_2(self.value_2) )
-                
+                self.value_2 = round(fun_desp_2(self.value_2))
+
                 if self.value_2 < 1000000:
-                
+
                     g2.append(f"g2(x{i + 1}) = ")
                     d2.append(f"{self.value_2}")
-                
+
                 else:
                     #print("Este no es el despeje correcto")
                     g2.append(f"g2 = ")
@@ -98,13 +97,12 @@ class PuntoFijo:
         except:
             print("Este no es el despeje correcto")
 
-
-        resultadosFinales = pd.DataFrame(d1,g1,['Datos'])             
-        resultadosFinales2 = pd.DataFrame(d2,g2,['Datos'])
-        return resultadosFinales,resultadosFinales2             
+        resultadosFinales = pd.DataFrame(d1, g1, ['Datos'])
+        resultadosFinales2 = pd.DataFrame(d2, g2, ['Datos'])
+        return resultadosFinales, resultadosFinales2
 
     def graf(self):
-        try:            
+        try:
 
             plt.plot(self.xplt, self.yplt, 'b-')
             plt.plot(self.value, 0, 'ro')
@@ -114,16 +112,16 @@ class PuntoFijo:
             winTitle = plt.gcf()
             winTitle.canvas.set_window_title("Punto Fijo")
             plt.grid()
-            gridSize = [-(10), (10), -(10), (10)] #Limite de ejes
+            gridSize = [-(10), (10), -(10), (10)]  # Limite de ejes
             plt.axis(gridSize)
             plt.show()
         except Exception as e:
             pass
-        
+
 
 #func = PuntoFijo("x^3+x-6", "3√(6-x)", "6-x^3",0, 2, 10 )
 
-
+'''
 func = PuntoFijo("x^3 + (x) - 6", " math.pow(6-x,(1/3)) ", "6 - (x^3)" , 0, 2, 10 )
 
 f1, f2 = func.calculate()
@@ -131,3 +129,4 @@ func.graf()
 
 print(f1)
 print(f2)
+'''
