@@ -123,7 +123,7 @@ class PuntoFijo:
 
 #func = PuntoFijo("x^3+x-6", "3√(6-x)", "6-x^3",0, 2, 10 )
 
-
+'''
 func = PuntoFijo("x^3 + (x) - 6", " math.pow(6-x,(1/3)) ", "6 - (x^3)" , 0, 2, 10 )
 
 f1, f2 = func.calculate()
@@ -131,3 +131,4 @@ func.graf()
 
 print(f1)
 print(f2)
+'''
