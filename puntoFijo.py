@@ -13,24 +13,18 @@ class PuntoFijo:
         self.b = b
         self.itr = itr
 
-        self.xplt = None
-        self.yplt = None
-        self.yplt_desp = None
-        self.value = None
-        self.value_2 = None
-
     def calculate(self):
-        self.value = self.a
-        self.value_2 = self.b
+        value = self.a
+        value_2 = self.b
         itr = self.itr
 
         self.ecu = self.ecu.replace('^', "**")
         self.ecu_desp = self.ecu_desp.replace('^', "**")
         self.ecu_desp_2 = self.ecu_desp_2.replace('^', "**")
 
-        self.xplt = np.linspace(-10, 10, 200)
-        self.yplt = np.array([], float)
-        self.yplt_desp = np.array([], float)
+        xplt = np.linspace(-10, 10, 200)
+        yplt = np.array([], float)
+        yplt_desp = np.array([], float)
 
         ldict = {}
         sToCode = "fun = lambda x: myExp "
@@ -56,15 +50,15 @@ class PuntoFijo:
         error_en_1 = False
         error_en_2 = False
 
-        for xp in self.xplt:  # evalua
+        for xp in xplt:  # evalua
             res = fun(xp)
-            self.yplt = np.append(self.yplt, res)
+            yplt = np.append(yplt, res)
 
         try:
             for i in range(itr):
-                self.value = fun_desp(self.value)
+                value = fun_desp(value)
 
-                if self.value < 1000000:
+                if value < 1000000:
 
                     g1.append(f"g1(x{i + 1}) = ")
                     d1.append(f'{value:.8f}')
@@ -81,12 +75,12 @@ class PuntoFijo:
 
         try:
             for i in range(itr):
-                self.value_2 = round(fun_desp_2(self.value_2))
+                value_2 = round(fun_desp_2(value_2))
 
-                if self.value_2 < 1000000:
+                if value_2 < 1000000:
 
                     g2.append(f"g2(x{i + 1}) = ")
-                    d2.append(f"{self.value_2}")
+                    d2.append(f"{value_2}")
 
                 else:
                     #print("Este no es el despeje correcto")
@@ -99,33 +93,36 @@ class PuntoFijo:
 
         resultadosFinales = pd.DataFrame(d1, g1, ['Datos'])
         resultadosFinales2 = pd.DataFrame(d2, g2, ['Datos'])
+
+        self.grafica(xplt, yplt, value, value_2)
+
         return resultadosFinales, resultadosFinales2
 
-    def graf(self):
-        try:
-
-            plt.plot(self.xplt, self.yplt, 'b-')
-            plt.plot(self.value, 0, 'ro')
-            plt.plot(self.value_2, 0, 'ro')
-            plt.xlabel('X')
-            plt.ylabel('Y')
-            winTitle = plt.gcf()
-            winTitle.canvas.set_window_title("Punto Fijo")
-            plt.grid()
-            gridSize = [-(10), (10), -(10), (10)]  # Limite de ejes
-            plt.axis(gridSize)
-            plt.show()
-        except Exception as e:
-            pass
+    def grafica(self, x, y, value, valueDos):
+        plt.plot(x, y, 'b-')
+        plt.plot(value, 0, 'ro')
+        plt.plot(valueDos, 0, 'ro')
+        plt.xlabel('X')
+        plt.ylabel('Y')
+        winTitle = plt.gcf()
+        winTitle.canvas.set_window_title("Punto Fijo")
+        plt.grid()
+        gridSize = [-(10), (10), -(10), (10)]  # Limite de ejes
+        plt.axis(gridSize)
+        plt.show()
 
 
-#func = PuntoFijo("x^3+x-6", "3√(6-x)", "6-x^3",0, 2, 10 )
+#func = PuntoFijo(" x^2 - (2)*(x) - 3", " math.sqrt( (2)*(x) + 3 ) ", "3/(x - 2)  ")
+#func = PuntoFijo("  x^3 + (4*x^2) - x - 1", " -1 + (4*x^2) + (x^3) ", "6 - (x^3)   ")
+
+
+# func = PuntoFijo("x^3 + (x) - 6", " math.pow(6-x,(1/3)) ",
+#                 "6 - (x^3)", 0, 2, 10)
 
 '''
-func = PuntoFijo("x^3 + (x) - 6", " math.pow(6-x,(1/3)) ", "6 - (x^3)" , 0, 2, 10 )
+func = PuntoFijo("x^3+x-6", "(6-x)^(1/3)", "6-x^3", 0, 2, 10)
 
 f1, f2 = func.calculate()
-func.graf()
 
 print(f1)
 print(f2)

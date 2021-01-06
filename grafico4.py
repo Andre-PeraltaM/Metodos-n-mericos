@@ -2,7 +2,6 @@ import puntoFijo
 import results
 from tkinter import *
 from tkinter import messagebox
-import brain
 
 
 def Grafico4(x):
@@ -88,7 +87,7 @@ def Grafico4(x):
     botonBorrar = Button(interGrafico, text="⌫", width=5,
                                             height=2, command=lambda: borrarElemento())
     botonEnter = Button(interGrafico, text="Enter", width=5,
-                        height=2, command=lambda: confirmar(func.get(), despUno.get(), despDos.get(), limiteA.get(), limiteB.get(), iterations.get()))
+                        height=2, command=lambda: confirmar(str(func.get()), str(despUno.get()), str(despDos.get()), int(limiteA.get()), int(limiteB.get()), int(iterations.get())))
     botonResta = Button(interGrafico, text="-", width=5,
                         height=2, command=lambda: click_boton("-"))
     botonSuma = Button(interGrafico, text="+", width=5,
@@ -104,7 +103,7 @@ def Grafico4(x):
     botonParentesisCierre = Button(
         interGrafico, text=")", width=5, height=2, command=lambda: click_boton(")"))
     botonRaiz = Button(interGrafico, text="√", width=5,
-                       height=2, command=lambda: click_boton("√()"))
+                       height=2, command=lambda: click_boton("√"))
     botonPunto = Button(interGrafico, text=".", width=5,
                         height=2, command=lambda: click_boton("."))
     botonX = Button(interGrafico, text="x", width=5, height=2,
@@ -130,9 +129,9 @@ def Grafico4(x):
     botonXelavado = Button(interGrafico, text="X^y", width=5,
                            height=2, command=lambda: click_boton("X^"))
     botonRaiz_x = Button(interGrafico, text="x√", width=5,
-                                            height=2, command=lambda: click_boton("x√()"))
+                                            height=2, command=lambda: click_boton("x√"))
     botonRaiz_3 = Button(interGrafico, text="3√", width=5,
-                                            height=2, command=lambda: click_boton("3√()"))
+                                            height=2, command=lambda: click_boton("3√"))
     botonFactorial = Button(interGrafico, text="!", width=5,
                             height=2, command=lambda: click_boton("!"))
     botonpi = Button(interGrafico, text="π", width=5,
@@ -196,31 +195,10 @@ def Grafico4(x):
         limiteB.insert(0, x[:-1])
 
     def click_boton(valor):
-        if func.tk_focusNext():
+
+        if func.focus_get():
             i = len(func.get())
             func.insert(i, valor)
-        elif despUno.tk_focusNext():
-            i = len(despUno.get())
-            despUno.insert(i, valor)
-        elif despDos.tk_focusNext():
-            i = len(despDos.get())
-            despDos.insert(i, valor)
-        elif limiteA.tk_focusNext():
-            i = len(limiteA.get())
-            limiteA.insert(i, valor)
-        elif limiteB.tk_focusNext():
-            i = len(limiteB.get())
-            limiteB.insert(i, valor)
-        elif iterations.tk_focusNext():
-            i = len(iterations.get())
-            iterations.insert(i, valor)
-
-        '''
-        textoDos.insert(i, valor)
-        textoTres.insert(i, valor)
-        textoCuatro.insert(i, valor)
-        textoCinco.insert(i, valor)
-		'''
 
     def borrar():
         func.delete(0, END)
@@ -234,17 +212,14 @@ def Grafico4(x):
         if x == 1:
             for i in range(1):
                 try:
-                    ecur = brain.ecuacion(ecu)
-                    despUnor = brain.ecuacion(despUno)
-                    despDosr = brain.ecuacion(despDos)
 
-                    obj = puntoFijo.PuntoFijo(ecur, despUnor, despDosr, int(valA), int(valB), int(iterations))
+                    obj = puntoFijo.PuntoFijo(
+                        ecu, despUno, despDos, valA, valB, iterations)
                     finalResultsOne, finalResultsTwo = obj.calculate()
-                    interGrafico.destroy()
-                    obj.graf()                   
                     cad = str(finalResultsOne) + \
                         "\n---------------------------------\n" + \
                         str(finalResultsTwo)
+                    interGrafico.destroy()
                     results.Results(cad)
                 except Exception as e:
                     messagebox.showerror(
