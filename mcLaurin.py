@@ -28,7 +28,6 @@ import numpy as np
 import math 
 import sympy as sy
 from sympy.interactive import printing
-printing.init_printing(use_latex=True)
 import matplotlib.pyplot as plt
 from fractions import Fraction
 import pandas as pd
@@ -62,7 +61,28 @@ class McTaylor:
         
         self.f = fun
         self.x0 = x0
+        self.p0 = None
+        self.p1 = None
+        self.p2 = None
+        self.p3 = None
+        self.p4 = None
+        self.p5 = None
+        self.p6 = None
+        self.p7 = None
+        self.fIni = None
+    def graf(self):
+        p = sy.plot( self.p0, self.p1, self.p2, self.p3, self.p4, self.p5, self.p6, self.p7, xlim=[-10,10], ylim=[-5,5], title=self.fIni)
         
+        p[0].line_color = 'red'
+        p[1].line_color = 'blue'
+        p[2].line_color = 'green'
+        p[3].line_color = 'black'
+        p[4].line_color = 'yellow'
+        p[5].line_color = 'gray'
+        p[6].line_color = 'cyan'
+        p[7].line_color = 'magenta'
+        
+        p.show()        
     def calculate(self):
         
         global x, fx, n, x0
@@ -75,7 +95,7 @@ class McTaylor:
         sToCode = sToCode.replace("myExp", self.f)
         exec(sToCode, globals(), ldict)
         f = ldict['f']
-        fIni = f
+        self.fIni = f
         
         #xi = 0 #---------- 
         xi = self.x0
@@ -117,28 +137,17 @@ class McTaylor:
         # sumad =  (  xxx[0] + xxx[1] + xxx[2] + xxx[3] + xxx[4] + xxx[5] + xxx[6] )
         # print("-------", sumad)
         
-        p1 = ( xxx[0] )
-        p2 = ( xxx[0] + xxx[1]) 
-        p3 = (  xxx[0] + xxx[1] + xxx[2] ) 
-        p4 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] )
-        p5 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] + xxx[4] ) 
-        p6 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] + xxx[4] + xxx[5] )
-        p7 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] + xxx[4] + xxx[5] + xxx[6] )
+        self.p1 = ( xxx[0] )
+        self.p2 = ( xxx[0] + xxx[1]) 
+        self.p3 = (  xxx[0] + xxx[1] + xxx[2] ) 
+        self.p4 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] )
+        self.p5 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] + xxx[4] ) 
+        self.p6 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] + xxx[4] + xxx[5] )
+        self.p7 = (  xxx[0] + xxx[1] + xxx[2] + xxx[3] + xxx[4] + xxx[5] + xxx[6] )
 
-        p0 = ( fIni )
+        self.p0 = ( self.fIni )
         
-        p = sy.plot( p0, p1, p2, p3, p4, p5, p6, p7, xlim=[-10,10], ylim=[-5,5], title=fIni)
-        
-        p[0].line_color = 'red'
-        p[1].line_color = 'blue'
-        p[2].line_color = 'green'
-        p[3].line_color = 'black'
-        p[4].line_color = 'yellow'
-        p[5].line_color = 'gray'
-        p[6].line_color = 'cyan'
-        p[7].line_color = 'magenta'
-        
-        p.show()
+
         
         return resultadosFinales, xxx
 

@@ -222,18 +222,19 @@ def GraficoMc(x):
        
 
         if x == 3:  # Mc
-            for i in range(1):
-                try:
-                    obj = mcLaurin.McTaylor(texto.get(), int( texto2.get() ) )
-                    r1, r2 = obj.calculate()
 
-                    cad = str(r1) + "\n---------------------\n" + str(r2)
-                    ventana.destroy()
-                    results.Results(cad)
-                    # print(r1)
-                    # print(r2)
-                except Exception as e:
-                    messagebox.showerror(
-                        message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+            try:
+                obj = mcLaurin.McTaylor(texto.get(), int( texto2.get() ) )
+                r1, r2 = obj.calculate()
+                ventana.destroy()
+                obj.graf()
+
+                cad = str(r1) + "\n---------------------\n" + str(r2)
+                results.Results(cad)
+                # print(r1)
+                # print(r2)
+            except Exception as e:
+                messagebox.showerror(
+                    message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
     ventana.mainloop()
