@@ -13,24 +13,24 @@ class PuntoFijo:
         self.b = b
         self.itr = itr
 
-        xplt = None
-        yplt = None
-        yplt_desp = None
-        value = None
-        value_2 = None
+        self.xplt = None
+        self.yplt = None
+        self.yplt_desp = None
+        self.value = None
+        self.value_2 = None
 
     def calculate(self):
-        value = self.a
-        value_2 = self.b
+        self.value = self.a
+        self.value_2 = self.b
         itr = self.itr
 
         self.ecu = self.ecu.replace('^', "**")
         self.ecu_desp = self.ecu_desp.replace('^', "**")
         self.ecu_desp_2 = self.ecu_desp_2.replace('^', "**")
 
-        xplt = np.linspace(-10, 10, 200) 
-        yplt = np.array([], float)
-        yplt_desp = np.array([], float)
+        self.xplt = np.linspace(-10, 10, 200) 
+        self.yplt = np.array([], float)
+        self.yplt_desp = np.array([], float)
 
         ldict = {}
         sToCode  = "fun = lambda x: myExp "
@@ -56,9 +56,9 @@ class PuntoFijo:
         error_en_1 = False
         error_en_2 = False
 
-        for xp in xplt: #evalua
+        for xp in self.xplt: #evalua
             res = fun(xp)
-            yplt = np.append(yplt , res)
+            self.yplt = np.append(self.yplt , res)
 
         try:
             for i in range(itr):
@@ -82,12 +82,12 @@ class PuntoFijo:
 
         try:
             for i in range(itr):
-                value_2 = round( fun_desp_2(value_2) )
+                self.value_2 = round( fun_desp_2(self.value_2) )
                 
-                if value_2 < 1000000:
+                if self.value_2 < 1000000:
                 
                     g2.append(f"g2(x{i + 1}) = ")
-                    d2.append(f"{value_2}")
+                    d2.append(f"{self.value_2}")
                 
                 else:
                     #print("Este no es el despeje correcto")
@@ -106,9 +106,9 @@ class PuntoFijo:
     def graf(self):
         try:            
 
-            plt.plot(xplt, yplt, 'b-')
-            plt.plot(value, 0, 'ro')
-            plt.plot(value_2, 0, 'ro')
+            plt.plot(self.xplt, self.yplt, 'b-')
+            plt.plot(self.value, 0, 'ro')
+            plt.plot(self.value_2, 0, 'ro')
             plt.xlabel('X')
             plt.ylabel('Y')
             winTitle = plt.gcf()
@@ -121,13 +121,13 @@ class PuntoFijo:
             pass
         
 
-#func = PuntoFijo(" x^2 - (2)*(x) - 3", " math.sqrt( (2)*(x) + 3 ) ", "3/(x - 2)  ")
-#func = PuntoFijo("  x^3 + (4*x^2) - x - 1", " -1 + (4*x^2) + (x^3) ", "6 - (x^3)   ")
-'''
+#func = PuntoFijo("x^3+x-6", "3√(6-x)", "6-x^3",0, 2, 10 )
+
+
 func = PuntoFijo("x^3 + (x) - 6", " math.pow(6-x,(1/3)) ", "6 - (x^3)" , 0, 2, 10 )
 
 f1, f2 = func.calculate()
+func.graf()
 
 print(f1)
 print(f2)
-'''
