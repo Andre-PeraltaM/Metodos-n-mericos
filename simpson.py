@@ -68,7 +68,7 @@ class simpson_tercio:
 
 class Simp:
     def __init__(self, funcion, a, b, num_iteraciones=9):
-        self.funcion = brain.ecuacion(funcion)
+        self.funcion = funcion
         self.a = a
         self.b = b
         self.num_iteraciones = num_iteraciones
@@ -96,8 +96,4 @@ class Simp:
         return x, y[1:], (x[2]+y[2])
 
 
-'''
-xxxxx = Simp('1/(1+x)',0,1,6)
 
-print(xxxxx.solucion())
-'''

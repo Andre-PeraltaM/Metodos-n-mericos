@@ -133,9 +133,8 @@ def prueba(x):
 	for i in x:
 		if i in apertura:
 			orden.append(i)
-			print('s')
 		elif i in cierre:
-			print('a')
+
 			if orden[-1] == lista[i]:
 				orden.pop()
 			else:

@@ -70,9 +70,3 @@ class simpson_tercio:
 
 
 		return resultadosFinales, x , total
-'''
-
-xxxxx = simpson_tercio('1/(1+X)',0,1,6)
-
-print(xxxxx.operacion())
-'''

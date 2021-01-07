@@ -70,8 +70,3 @@ class trapecio_1:
 
         return resultadosFinales, x, total
 
-
-xxxxx = trapecio_1('xe^(2x)',0,1,10)
-
-yyy = xxxxx.operacion()
-xxxxx.graf()

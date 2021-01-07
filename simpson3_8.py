@@ -67,8 +67,3 @@ class simpson_tresoctavos:
 
 		return y[0],x , total
 	
-'''
-xxxxx = simpson_tresoctavos('3*(x)**2 - 10*x + 8',2,3,11)
-
-print(xxxxx.operacion())
-'''
