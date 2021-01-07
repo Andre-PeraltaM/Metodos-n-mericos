@@ -223,21 +223,20 @@ def Grafico1(x):
                     message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
         elif x == 2:  # N-R
-            try:
-                texto_1 = texto.get()
-                objeto = Newton_Raphson.NewtonRapson(texto_1)
-                y = objeto.calculate()
 
-                cad = str(y[0]) + "\n---------------------\n" + \
-                    str(y[1]) + "\n---------------------\n" + str(y[2])
-                ventana.destroy()
-                results.Results(cad)
-                # print(y[0])
-                # print(y[1])
-                # print(y[2])
+            texto_1 = brain.ecuacion2(texto.get())
+            #objeto = Newton_Raphson.NewtonRapson(texto_1)
+            objeto = Newton_Raphson.NewtonRapson(texto_1)
+            y = objeto.calculate()
+            ventana.destroy()
+            objeto.graf()
 
-            except Exception as e:
-                messagebox.showerror(
-                    message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
+            cad = str(y[0]) + "\n---------------------\n" + \
+                str(y[1]) + "\n---------------------\n" + str(y[2])
+            results.Results(cad)
+            # print(y[0])
+            # print(y[1])
+            # print(y[2])
+
 
     ventana.mainloop()
