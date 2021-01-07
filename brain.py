@@ -333,7 +333,7 @@ def ecuacion2(function):
 		raise e
 
 	function = function.translate(tabla_de_valores)
-	diccionario_otras_variables = {"ln":"sy.ln","log":"sy.log","cos":"sy.cos","sin":"sy.sin","tan":"sy.tan","cot":"sy.cot","sec":"sy.sec","csc":"sy.csc","sinc":"sy.sinc","acos":"sy.acos","asin":"sy.asin","atan":"sy.atan","acot":"sy.acot","asec":"sy.asec","acsc":"sy.acsc","acsc":"sy.acsc","π":"math.pi","e":"math.e"}
+	diccionario_otras_variables = {"ln":"sy.ln","cos":"sy.cos","sin":"sy.sin","tan":"sy.tan","cot":"sy.cot","sec":"sy.sec","csc":"sy.csc","sinc":"sy.sinc","acos":"sy.acos","asin":"sy.asin","atan":"sy.atan","acot":"sy.acot","asec":"sy.asec","acsc":"sy.acsc","acsc":"sy.acsc","π":"(3.14159)","e":"(2.71828)"}
 	#math.log(x, base)
 	for i in diccionario_otras_variables:
 		if i in function:

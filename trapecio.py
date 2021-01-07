@@ -8,8 +8,9 @@ style.use('ggplot')
 
 
 class trapecio_1:
-    def __init__(self, funcion, a, b, num_iteraciones=9):
-        self.funcion = brain.ecuacion(funcion)
+    def __init__(self, funcion, a, b, num_iteraciones=9,funcion_ori = None):
+        self.funcion = funcion
+        self.funcion_original = funcion_ori
         self.a = a
         self.b = b
         self.num_iteraciones = num_iteraciones
@@ -19,8 +20,11 @@ class trapecio_1:
 
     def graf(self):
         try:
-            p0 = ( self.funcion )
-            p = sy.plot( p0, xlim=[-100,100], ylim=[-50,50], title=self.funcion)
+
+            funcion_o = brain.ecuacion2(self.funcion_original)
+
+            p0 = (funcion_o )
+            p = sy.plot( p0, xlim=[-100,100], ylim=[-50,50], title = self.funcion_original)
             p[0].line_color = 'red'
             p[1].line_color = 'blue'
             p.show()            
@@ -51,10 +55,10 @@ class trapecio_1:
                 total += resultado[i]*2
         total = (h/2)*total
         n = list(range(self.num_iteraciones+1))
-        zzz = ['a+n*h = xi', f'f(x) = {self.funcion} ']
+        zzz = ['a+n*h = xi', f'f(x) = {self.funcion_original} ']
         datos = []
 
-        x = f'{self.funcion} = {self.b-self.a}/{self.num_iteraciones}/2*('
+        x = f'{self.funcion_original} = {self.b-self.a}/{self.num_iteraciones}/2*('
 
         for i in range(self.num_iteraciones+1):
             datos.append([aaa[i], resultado[i]])
@@ -69,4 +73,11 @@ class trapecio_1:
         resultadosFinales = pd.DataFrame(datos, n, zzz)
 
         return resultadosFinales, x, total
-
+'''
+x = 'xe^(2x)'
+y = brain.ecuacion(x)
+objeto = trapecio_1(y, 0, 1, 6,x)
+w = objeto.operacion()
+objeto.graf()
+print(w)
+'''

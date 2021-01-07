@@ -8,6 +8,7 @@ class simpson_tercio:
     def __init__(self, funcion, a, b, num_iteraciones=9):
         self.funcion = funcion
         self.a = a
+
         self.b = b
         self.num_iteraciones = num_iteraciones
 
@@ -67,21 +68,25 @@ class simpson_tercio:
 
 
 class Simp:
-    def __init__(self, funcion, a, b, num_iteraciones=9):
+    def __init__(self, funcion, a, b, num_iteraciones=9,funcion_ori = None):
         self.funcion = funcion
         self.a = a
         self.b = b
         self.num_iteraciones = num_iteraciones
-
+        self.funcion_original = funcion_ori
+        
     def graf(self):
         try:
-            p0 = (self.funcion)
-            p = sy.plot(p0, xlim=[-100, 100], ylim=[-50, 50], title=self.funcion)
+
+            funcion_o = brain.ecuacion2(self.funcion_original)
+
+            p0 = (funcion_o )
+            p = sy.plot( p0, xlim=[-100,100], ylim=[-50,50], title = self.funcion_original)
             p[0].line_color = 'red'
             p[1].line_color = 'blue'
             p.show()            
         except Exception as e:
-            pass
+            pass   
 
 
     def solucion(self):

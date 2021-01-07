@@ -1,21 +1,24 @@
 import pandas as pd
 import brain
 import math
+import sympy as sy
 class simpson_tercio:
-	def __init__(self,funcion,a,b,num_iteraciones = 9):
+	def __init__(self,funcion,a,b,num_iteraciones = 9,funcion_ori = None):
 		self.funcion = funcion
+		self.funcion_original = funcion_ori		
 		self.a = a
 		self.b = b
 		self.num_iteraciones = num_iteraciones
 	def graf(self):
 		try:
-			p0 = (self.funcion)
-			p = sy.plot(p0, xlim=[-100, 100], ylim=[-50, 50], title=self.funcion)
+			funcion_o = brain.ecuacion2(self.funcion_original)
+			p0 = (funcion_o )
+			p = sy.plot( p0, xlim=[-100,100], ylim=[-50,50], title = self.funcion_original)
 			p[0].line_color = 'red'
 			p[1].line_color = 'blue'
 			p.show()            
 		except Exception as e:
-			pass
+			pass   
             
 	def h(self):
 		return (self.b - self.a)/self.num_iteraciones
@@ -47,10 +50,10 @@ class simpson_tercio:
 
 		total = (h*1/3)*total
 		n = list(range(self.num_iteraciones+1))
-		zzz = ['a+n*h = xi', f'f(x) = {self.funcion} ']
+		zzz = ['a+n*h = xi', f'f(x) = {self.funcion_original} ']
 		datos = []
 
-		x = f'{self.funcion} = {self.b-self.a}/{self.num_iteraciones}/3*('
+		x = f'{self.funcion_original} = {self.b-self.a}/{self.num_iteraciones}/3*('
 
 		for i in range(self.num_iteraciones+1):
 			datos.append([aaa[i],resultado[i]])

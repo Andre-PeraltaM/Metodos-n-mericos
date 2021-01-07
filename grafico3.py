@@ -205,9 +205,11 @@ def Grafico3(x):
 
         if x == 6:  # trapecio
             try:
+                funo = fun
                 fun = brain.ecuacion(fun)
+                
 
-                objeto = trapecio.trapecio_1(fun, int(a), int(b), int(itr))
+                objeto = trapecio.trapecio_1(fun, int(a), int(b), int(itr),funo)
                 y = objeto.operacion()
                 interGrafico.destroy()
                 objeto.graf()
@@ -215,18 +217,17 @@ def Grafico3(x):
                 cad = str(y[0]) + "\n-----------------------\n" + \
                     str(y[1]) + "\n-----------------------\n" + "Area = " + str(y[2]) + " u^2"
                 results.Results(cad)
-
             except Exception as e:
                 messagebox.showerror(
                     message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
-               
+
 
         elif x == 7:  # simpson 1/3
             try:
-
+                funo = fun
                 fun = brain.ecuacion(fun)
 
-                objeto = simpson1_3.simpson_tercio(fun, int(a), int(b), int(itr))
+                objeto = simpson1_3.simpson_tercio(fun, int(a), int(b), int(itr),funo)
                 y = objeto.operacion()
                 interGrafico.destroy()       
                 objeto.graf()
@@ -242,10 +243,10 @@ def Grafico3(x):
 
         elif x == 8:  # simpson 3/8
             try:
-
+                funo = fun
                 fun = brain.ecuacion(fun)
 
-                objeto = simpson3_8.simpson_tresoctavos(fun, int(a), int(b), int(itr))
+                objeto = simpson3_8.simpson_tresoctavos(fun, int(a), int(b), int(itr),funo)
                 y = objeto.operacion()
                 interGrafico.destroy()
                 objeto.graf()
@@ -260,17 +261,21 @@ def Grafico3(x):
                     message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
         elif x == 9:  # simpsonS
+            try:
+                    funo = fun
+                    fun = brain.ecuacion(fun)
+                    
+                    objeto = simpson.Simp(fun, int(a), int(b), int(itr),funo)
+                    y = objeto.solucion()
+                    interGrafico.destroy()
+                    objeto.graf()
 
-            fun = brain.ecuacion(fun)
-            
-            objeto = simpson.Simp(fun, int(a), int(b), int(itr))
-            y = objeto.solucion()
-            interGrafico.destroy()
-            objeto.graf()
-
-            cad = str(y[0]) + "\n-----------------------\n" + \
-                str(y[1]) + "\n-----------------------\n" + str(y[2])
-            results.Results(cad)
+                    cad = str(y[0]) + "\n-----------------------\n" + \
+                        str(y[1]) + "\n-----------------------\n" + str(y[2])
+                    results.Results(cad)
+            except Exception as e:
+                messagebox.showerror(
+                    message="La función usada es erronea, por favor introduzca una fucnión correcta", title="función erronea")
 
 
     interGrafico.mainloop()
