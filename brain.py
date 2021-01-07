@@ -250,7 +250,7 @@ def ecuacion(function):
 		if i in function:
 			for j in range(function.count(i)):
 				z = function[function.find(i)+len(i)+1:]
-				function = function[:function.find(i)+len(i)+1+z.find(')')] + '))' + function [function.find(i)+len(i)+1+z.find(')')+1:] 
+				function = function[:function.find(i)+len(i)+1+z.find(')')] + ')' + function [function.find(i)+len(i)+1+z.find(')')+1:] 
 				function = function.replace(i,diccionario_otras_variables[i],1)
 
 
