@@ -2,7 +2,7 @@ import pandas as pd
 import simpson3_8
 import brain
 import sympy as sy
-
+import math
 
 class simpson_tercio:
     def __init__(self, funcion, a, b, num_iteraciones=9):
@@ -87,8 +87,7 @@ class Simp:
     def solucion(self):
         un_tercio = simpson_tercio(
             self.funcion, self.a, self.b, self.num_iteraciones)
-        tres_octavos = simpson3_8.simpson_tresoctavos(
-            self.funcion, self.a, self.b, self.num_iteraciones)
+        tres_octavos = simpson3_8.simpson_tresoctavos(self.funcion, self.a, self.b, self.num_iteraciones)
 
         x = un_tercio.operacion()
 

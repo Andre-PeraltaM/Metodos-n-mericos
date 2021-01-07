@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import sympy as sy
 from matplotlib import style
+import math
 style.use('ggplot')
 
 
@@ -70,6 +71,7 @@ class trapecio_1:
         return resultadosFinales, x, total
 
 
-# xxxxx = trapecio_1('3*(x)**2 - 10*x + 8',2,3,11)
+xxxxx = trapecio_1('xe^(2x)',0,1,10)
 
-# print(xxxxx.operacion())
+yyy = xxxxx.operacion()
+xxxxx.graf()
