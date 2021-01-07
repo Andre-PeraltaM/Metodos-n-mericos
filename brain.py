@@ -224,6 +224,8 @@ def ecuacion(function):
 	Resive un valor Str y devuelve un valor str equivalente que puede ser introducido en eval()
 	Si la función está mal entonces se devuelve 'error'
 	'''
+	tabla_de_valores = { 88: '(x)', 120: '(x)', 94: '**'}
+	function = function.translate(tabla_de_valores)
 	if prueba(function):#Por si los parentesis están mal
 		pass
 	else:
@@ -231,16 +233,13 @@ def ecuacion(function):
 
 
 	for i in function:#Por si no hay numeros
-		if i.isdecimal():
+		if i.isdecimal() or i == 'x' :
 			break
 	else:
 		raise e
 
 	function = raiz(function)
-	
 
-	tabla_de_valores = { 88: '(x)', 120: '(x)', 94: '**'}
-	function = function.translate(tabla_de_valores)
 	#Las anteriores 3 lineas son para sustituir X, x y ^
 	diccionario_otras_variables = {'sec':'(sic','csc':'(csc','cot':'(cot','sen':'(math.sin','cos':'(math.cos','tan':'(math.tan','senh':'(math.sinh','cosh':'(math.cosh','tanh':'(math.tanh','sin^-1': '(math.asin', 'cos^-1' : '(math.acos' , 'tan^-1' : '(math.atan','π':'(math.pi)','Ln':'(math.log','ln':'(math.log','log_10':'(math.log10','acos':'(math.acos','asin':'(math.asin','atan':'(math.atan','e':'(math.e)'}
 
@@ -319,6 +318,8 @@ def ecuacion2(function):
 	'''
 	Para cuando el programa use sympy
 	'''
+	function = raiz(function)
+	tabla_de_valores = { 88: '(x)', 120: '(x)', 94: '**'}
 	if prueba(function):#Por si los parentesis están mal
 		pass
 	else:
@@ -326,12 +327,11 @@ def ecuacion2(function):
 
 
 	for i in function:#Por si no hay numeros
-		if i.isdecimal():
+		if i.isdecimal() or i == 'x':
 			break
 	else:
 		raise e
-	function = raiz(function)
-	tabla_de_valores = { 88: '(x)', 120: '(x)', 94: '**'}
+
 	function = function.translate(tabla_de_valores)
 	diccionario_otras_variables = {"ln":"sy.ln","log":"sy.log","cos":"sy.cos","sin":"sy.sin","tan":"sy.tan","cot":"sy.cot","sec":"sy.sec","csc":"sy.csc","sinc":"sy.sinc","acos":"sy.acos","asin":"sy.asin","atan":"sy.atan","acot":"sy.acot","asec":"sy.asec","acsc":"sy.acsc","acsc":"sy.acsc","π":"math.pi","e":"math.e"}
 	#math.log(x, base)
